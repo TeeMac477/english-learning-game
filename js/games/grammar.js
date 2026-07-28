@@ -1,45 +1,43 @@
 window.GAMES.push({
   id: 'grammar',
   icon: '✍️',
-  title: 'Grammar — Tenses',
-  description: 'Present Simple, Past Simple, Continuous and more',
+  title: 'Grammar Lessons',
+  description: 'Learn verbs → practise grammar → build sentences',
   render(container) {
     renderGrammarHome(container);
   },
 });
 
 function renderGrammarHome(container) {
-  const categories = Object.values(window.GRAMMAR);
+  const tenses = Object.values(window.LESSONS);
 
   container.innerHTML = `
-    <h2 class="section-heading">Grammar — Tenses</h2>
-    <p class="section-sub">Choose a tense to practise.</p>
+    <h2 class="section-heading">Grammar Lessons</h2>
+    <p class="section-sub">Each lesson has 3 phases: learn new verbs, practise grammar, build sentences.</p>
     <div class="game-grid"></div>
   `;
 
   const grid = container.querySelector('.game-grid');
-  categories.forEach((cat) => {
-    const totalQs = cat.rounds.reduce((sum, r) => sum + r.questions.length, 0);
+  tenses.forEach((tense) => {
+    const totalItems = tense.lessons.reduce((sum, l) => sum + l.verbs.length + l.grammarQuestions.length + l.sentences.length, 0);
     const card = document.createElement('div');
     card.className = 'game-card';
     card.innerHTML = `
-      <div class="icon">${cat.icon}</div>
-      <h3>${cat.title}</h3>
-      <p>${cat.description}</p>
-      <span class="tag tag-popular">${totalQs} Qs</span>
+      <div class="icon">${tense.icon}</div>
+      <h3>${tense.title}</h3>
+      <p>${tense.description}</p>
+      <span class="tag tag-popular">${tense.lessons.length} lessons · ${totalItems} items</span>
     `;
-    card.addEventListener('click', () => renderGrammarRounds(container, cat));
+    card.addEventListener('click', () => renderLessonList(container, tense));
     grid.appendChild(card);
   });
 }
 
-function renderGrammarRounds(container, category) {
-  const allQuestions = category.rounds.flatMap((r) => r.questions);
-
+function renderLessonList(container, tense) {
   container.innerHTML = `
     <button class="ghost-btn back-inline">← All tenses</button>
-    <h2 class="section-heading">${category.icon} ${category.title}</h2>
-    <p class="section-sub">${category.description}</p>
+    <h2 class="section-heading">${tense.icon} ${tense.title}</h2>
+    <p class="section-sub">${tense.description}</p>
     <div class="round-list"></div>
   `;
 
@@ -47,50 +45,27 @@ function renderGrammarRounds(container, category) {
 
   const list = container.querySelector('.round-list');
 
-  category.rounds.forEach((round, i) => {
+  tense.lessons.forEach((lesson, i) => {
+    const totalItems = lesson.verbs.length + lesson.grammarQuestions.length + lesson.sentences.length;
     const item = document.createElement('button');
     item.className = 'round-item';
     item.innerHTML = `
       <div class="round-number">${i + 1}</div>
       <div class="round-info">
-        <strong>${round.title}</strong>
-        <span>${round.hint || ''}</span>
+        <strong>${lesson.title}</strong>
+        <span>📚 ${lesson.verbs.length} verbs · 📝 ${lesson.grammarQuestions.length} grammar Qs · 🧩 ${lesson.sentences.length} sentences</span>
       </div>
-      <div class="round-count">${round.questions.length} Qs</div>
+      <div class="round-count">${totalItems} items</div>
     `;
     item.addEventListener('click', () => {
-      runQuiz(container, {
-        title: `${category.title} — ${round.title}`,
-        questions: round.questions,
-        hint: round.hint,
-        storageKey: `grammar:${category.id}:${i}`,
-        onExit: () => renderGrammarRounds(container, category),
-        exitLabel: '← Back to rounds',
+      runLesson(container, {
+        title: `${tense.title} — ${lesson.title}`,
+        lesson: lesson,
+        storageKey: `lesson:${tense.id}:${i}`,
+        onExit: () => renderLessonList(container, tense),
+        exitLabel: '← Back to lessons',
       });
     });
     list.appendChild(item);
   });
-
-  if (category.rounds.length > 1) {
-    const challenge = document.createElement('button');
-    challenge.className = 'round-item challenge';
-    challenge.innerHTML = `
-      <div class="round-number">🏆</div>
-      <div class="round-info">
-        <strong>Mixed Challenge</strong>
-        <span>All rounds together</span>
-      </div>
-      <div class="round-count">${allQuestions.length} Qs</div>
-    `;
-    challenge.addEventListener('click', () => {
-      runQuiz(container, {
-        title: `${category.title} — Mixed`,
-        questions: allQuestions,
-        storageKey: `grammar:${category.id}:mixed`,
-        onExit: () => renderGrammarRounds(container, category),
-        exitLabel: '← Back to rounds',
-      });
-    });
-    list.appendChild(challenge);
-  }
 }

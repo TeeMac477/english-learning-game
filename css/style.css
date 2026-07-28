@@ -493,6 +493,82 @@ main {
 .tag-new { background: var(--success-light); color: var(--success); }
 .tag-popular { background: var(--accent-light); color: #92400e; }
 
+/* ──────── COUNTDOWN INSIDE NEXT BUTTON ──────── */
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-bar {
+  display: inline-block;
+  width: 24px;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.countdown-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: white;
+  border-radius: 2px;
+  transition: width 2s linear;
+}
+
+/* ──────── PHASE INDICATOR ──────── */
+.phase-tracker {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.phase-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.phase-step.active {
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+}
+
+.phase-step.done {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.phase-step .phase-icon { font-size: 1.1rem; }
+
+.phase-intro {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.phase-intro .phase-icon-big {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  animation: popIn 0.4s ease;
+}
+
+.phase-intro h2 { margin: 0.5rem 0; font-size: 1.6rem; }
+.phase-intro p { color: var(--muted); margin: 0 0 1.5rem; font-size: 1rem; }
+
 /* ──────── VOCAB MODE PICKER ──────── */
 .mode-picker { margin-bottom: 1.5rem; }
 .mode-picker p { margin: 0 0 0.75rem; }

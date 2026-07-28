@@ -119,14 +119,24 @@ function runSentenceBuilder(container, options) {
       controls.innerHTML = '';
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = index + 1 < pool.length ? 'Next' : 'See results';
-      nextBtn.addEventListener('click', () => {
+      const isLast = index + 1 >= pool.length;
+      nextBtn.innerHTML = (isLast ? 'See results' : 'Next') + ' <span class="countdown-bar"><span class="countdown-fill"></span></span>';
+      let done = false;
+      const advance = () => {
+        if (done) return;
+        done = true;
         index++;
         if (index < pool.length) renderQuestion();
         else renderResults();
-      });
+      };
+      nextBtn.addEventListener('click', advance);
       controls.appendChild(nextBtn);
       nextBtn.focus();
+      requestAnimationFrame(() => {
+        const fill = nextBtn.querySelector('.countdown-fill');
+        if (fill) fill.style.width = '100%';
+      });
+      setTimeout(advance, 2000);
     }
   }
 
