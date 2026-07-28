@@ -1,91 +1,89 @@
-# English Learning Game — Curriculum Outline
+# English Learning Game — Curriculum Outline & Roadmap
 
-Master plan for all sections. **Status legend:** ✅ built · 🟡 partial · ⬜ planned
+Live at: **https://teemac477.github.io/english-learning-game/**
 
-Every section follows the same shape:
-**Section → Categories → Rounds (6 questions each) → Question types.**
+**Status legend:** ✅ built · 🟡 partial · ⬜ planned
 
 ---
 
-## ✅ 1. Prepositions — *BUILT*
+## Current build status (as of this review)
 
-| Category | Rounds | Focus |
+| Section | Status | Items |
 |---|---|---|
-| Prepositions of Time | 3 | `at/on/in` · `since/for/ago/during` · `before/after/until/by/from` |
-| Prepositions of Place | 3 | `at/on/in` · `under/over/above/below/between/among` · `behind/in front of/next to/near/opposite/inside` |
-| Prepositions of Movement | 3 | `to/into/onto/out of` · `across/through/along/around` · `up/down/off/past/towards/over` |
+| Prepositions (time/place/movement) | ✅ built | 108 questions |
+| Vocabulary (7 topics, image + Russian) | ✅ built | 199 words |
+| Sentence Builder (word rearranging) | ✅ built | 48 sentences |
+| Grammar Lessons (3-phase: verbs → grammar → sentences) | ✅ built | 4 tenses, 6 lessons, 228 items |
+| **Total content** | | **~583 items** |
+
+Engine features already in place: auto-advance (2s countdown), review-missed-questions mode, best-score saving (localStorage), progress bars, phase tracker, three vocabulary modes (image/Russian/both).
 
 ---
 
-## ⬜ 2. Vocabulary (grouped by topic, image-led)
+## 1. Vocabulary — expand existing + new topics
 
-Each topic = 12–24 words, taught with a visual, then recall, then spelling.
+**Existing topics need more rounds** (currently 1–4 rounds each, aim for 3+ each):
+| Topic | Now | Target |
+|---|---|---|
+| Food & Drink | 4 rounds ✅ | — good coverage |
+| Animals | 4 rounds ✅ | — good coverage |
+| Body Parts | 2 rounds | 3 rounds |
+| Clothes | 1 round | 2–3 rounds |
+| House & Home | 1 round | 2–3 rounds |
+| Transport | 1 round | 2 rounds |
+| Weather | 1 round | 2 rounds |
 
-| Category | Sample contents |
+**New topics to add:**
+| Topic | Sample contents |
 |---|---|
-| Food & Drink | fruit, vegetables, meals, drinks, cooking verbs |
-| Animals | pets, farm, wild, sea, insects |
-| Body Parts | head/face, limbs, internal, describing pain |
-| Clothes | everyday, weather-specific, accessories, verbs (wear/put on) |
 | Family Members | immediate, extended, in-laws, relationship words |
 | Jobs & Occupations | common jobs, workplaces, job duties |
-| House & Furniture | rooms, furniture, appliances, household objects |
 | Countries & Nationalities | country → nationality → language |
-| Weather & Seasons | conditions, temperature, seasons, describing weather |
-| Transport | vehicles, travel verbs, places (station/airport) |
 | School & Classroom | subjects, objects, classroom instructions |
-| Sports & Hobbies | sports, equipment, play/do/go collocations |
+| Sports & Hobbies | equipment, play/do/go collocations |
 | Colours & Shapes | basic + advanced colours, 2D/3D shapes |
 | Numbers & Time | cardinal, ordinal, telling the time, dates |
-| Days, Months, Seasons | days, months, ordinal dates |
+| Days & Months | days, months, ordinal dates |
 | Nature & Places | landscape, city vs countryside, buildings |
 | Technology | devices, internet, common tech verbs |
 | Emotions & Feelings | basic, advanced, describing mood |
 
 ---
 
-## ⬜ 3. Tenses (each tense its own category)
+## 2. Grammar Lessons — more tenses + more lessons per tense
 
-| Category | Rounds cover |
+**Priority: add a 3rd lesson to each existing tense** (currently 1–2 lessons each) so repeat play stays fresh, matching the "3 playthroughs without repetition" goal.
+
+**New tenses to add** (same 3-phase structure: learn verbs → grammar → sentences):
+| Tense | Focus |
 |---|---|
-| Present Simple | positive · negative · questions · 3rd person -s |
-| Present Continuous | form · now vs. always · stative verbs |
 | Present Perfect | for/since · ever/never · just/already/yet |
 | Present Perfect Continuous | duration · vs. present perfect |
-| Past Simple | regular verbs · irregular verbs · questions/negatives |
-| Past Continuous | form · interrupted actions (`while`/`when`) |
-| Past Perfect | form · sequencing two past events |
-| Future — *will* | predictions · decisions · promises |
-| Future — *going to* | plans · evidence-based predictions |
-| Future Continuous & Perfect | form · time expressions |
-| Mixed Tense Review | choose the correct tense in context |
+| Past Perfect | sequencing two past events |
+| Future — *will* | predictions, decisions, promises |
+| Future — *going to* | plans, evidence-based predictions |
+| Mixed Tense Review | choose the correct tense in context (combines all learned tenses) |
 
 ---
 
-## ⬜ 4. Grammar Structures
+## 3. Grammar Structures (new section, non-tense)
 
 | Category | Contents |
 |---|---|
 | Articles | a / an / the / zero article |
-| Adjectives | order of adjectives · describing people & things |
+| Adjective Order | size, age, colour, origin, purpose |
 | Comparatives & Superlatives | -er/-est · more/most · irregular (good/bad/far) |
-| Adverbs of Manner | verb + adverb, word order |
 | Adverbs of Frequency | always → never, position in sentence |
 | Countable & Uncountable | some/any · much/many · a lot of |
-| Quantifiers | few/little/plenty/enough |
 | Modal Verbs | can/could · must/have to · should · may/might |
-| Conditionals | zero · first · second · third |
-| Passive Voice | present · past · by-agent |
-| Question Formation | wh- questions · yes/no · question tags |
-| Relative Clauses | who/which/that/where |
-| Reported Speech | statements · questions · commands |
+| Conditionals | zero · first · second |
+| Passive Voice | present · past |
+| Question Formation | wh- questions · yes/no |
 | Plurals | regular · irregular · tricky spellings |
-| Pronouns | subject/object · possessive · reflexive |
-| There is / There are | singular vs plural, negatives |
 
 ---
 
-## ⬜ 5. Phrasal Verbs
+## 4. Phrasal Verbs (new section)
 
 | Category | Sample contents |
 |---|---|
@@ -95,57 +93,63 @@ Each topic = 12–24 words, taught with a visual, then recall, then spelling.
 | Work & Study | fill in, hand in, carry on, put off, take over |
 | Home & Objects | turn on/off, throw away, tidy up, run out of |
 | Communication | call back, hang up, speak up, bring up |
-| Change & Progress | grow up, give up, take up, work out |
-| Separable vs Inseparable | word-order practice with objects/pronouns |
+
+Could reuse the 3-phase lesson structure: learn the phrasal verb (image + Russian) → grammar (pick correct form/preposition) → sentence building.
 
 ---
 
-## ⬜ 6. Everyday English Phrases (by situation)
+## 5. Everyday English Phrases by Situation (new section)
 
-Each category = useful phrases + the vocabulary that goes with it.
+Each category = useful phrases + related vocabulary, ideal for practical/adult-beginner learners.
 
-| Category | Phrases | Related vocabulary |
+| Category | Example phrases | Related vocabulary |
 |---|---|---|
-| Greetings & Introductions | "How's it going?", "Nice to meet you", "This is my friend…" | names, titles, small talk |
-| At a Restaurant | "A table for two, please", "I'll have…", "Could we get the bill?" | menu, starter, main, dessert, waiter, bill, tip |
-| At the Airport | "I'd like to check in", "Where's the gate?", "Any luggage?" | boarding pass, passport, security, departure, delay |
-| At a Hotel | "I have a reservation", "What time is check-out?" | reception, key card, single/double room, en suite |
-| Shopping | "How much is this?", "Do you have this in a medium?" | size, receipt, refund, discount, changing room |
-| Directions | "How do I get to…?", "Turn left at the lights" | roundabout, crossroads, opposite, straight on |
-| At the Doctor | "I've got a sore throat", "It hurts here" | symptoms, prescription, appointment, pharmacy |
-| On the Phone | "Can I speak to…?", "Hold on a moment" | dial, hang up, voicemail, signal |
+| At a Restaurant | "A table for two", "I'll have…", "Could we get the bill?" | menu, starter, waiter, tip |
+| At the Airport | "I'd like to check in", "Where's the gate?" | boarding pass, security, departure |
+| At a Hotel | "I have a reservation", "What time is check-out?" | reception, key card, en suite |
+| Shopping | "How much is this?", "Do you have this in a medium?" | size, receipt, refund |
+| Directions | "How do I get to…?", "Turn left at the lights" | roundabout, crossroads |
+| At the Doctor | "I've got a sore throat", "It hurts here" | symptoms, prescription |
+| On the Phone | "Can I speak to…?", "Hold on a moment" | voicemail, signal |
 | Making Plans | "Are you free on Friday?", "Shall we…?" | invite, cancel, reschedule |
-| At Work / Office | "Can we schedule a meeting?", "I'll get back to you" | deadline, colleague, report, email |
-| Small Talk & Weather | "Lovely day, isn't it?", "How was your weekend?" | conversation starters |
-| Emergencies & Help | "Can you help me?", "I've lost my…", "Call an ambulance" | police, emergency, lost property |
-| Apologising & Thanking | "Sorry about that", "I really appreciate it" | polite softeners |
-| Opinions & Agreeing | "I think…", "I see what you mean, but…" | agree, disagree, in my opinion |
-| At the Bank / Post Office | "I'd like to open an account", "How much is postage?" | account, withdraw, parcel, stamp |
-| Public Transport | "A return to London, please", "Which platform?" | ticket, single/return, platform, timetable |
 
 ---
 
-## ⬜ 7. Skills & Fun Modes
+## 6. Skills & Fun Modes (new section)
 
 | Category | Contents |
 |---|---|
-| Spelling | look → hide → spell the word |
-| Listening | hear the word/phrase → click the image (Web Speech API) |
-| Speaking | say the word aloud (speech recognition) |
+| Listening | hear the word spoken aloud → click the image (Web Speech API — free) |
 | Idioms & Proverbs | common idioms with meanings in context |
-| Similes | "as … as" patterns |
-| Word Order | drag words to build correct sentences |
-| Memory Match | match word ↔ image pairs |
-| Hangman / Word Reveal | guess the hidden word |
-| Seasonal | Halloween · Christmas · Easter |
-| Mixed Quiz | random questions across all built sections |
+| Memory Match | flip-card style match word ↔ image pairs |
+| Seasonal | Halloween, Christmas themed vocabulary sets |
+| Mixed Quiz | random questions pulled from all built sections, for a final challenge |
 
 ---
 
-## Planned platform features
+## Recommended improvements (for review)
 
-- **Difficulty modes** — Kids (simpler words, playful) vs Adult Beginner (practical/everyday).
-- **Audio** — pronunciation via the browser's built-in `speechSynthesis` (free, no assets).
-- **Review mode** — replay only the questions you got wrong.
-- **Progress saving** — scores per round in `localStorage`.
-- **Images** — emoji used as placeholders now; swappable for real illustrations later.
+### High priority
+1. **Add a 3rd lesson per grammar tense** — directly serves the "3 replays without repetition" goal; currently only 1–2 lessons exist per tense.
+2. **Expand thin vocabulary rounds** (Clothes, House, Transport, Weather each have only 1 round) — same repetition concern as above.
+3. **Mixed Tense Review** — once 5–6 tenses exist, a combined review round tests whether students can *choose* the right tense, which is the actual hard skill (not just conjugate one tense in isolation).
+
+### Medium priority
+4. **Difficulty / age modes** — a "Kids" mode (simpler words, more playful copy) vs "Adult" mode (practical, everyday vocabulary) was part of the original brief but hasn't been built. Could be a simple toggle that filters/reorders content rather than a full parallel content set.
+5. **Audio pronunciation** — browser's built-in `speechSynthesis` API is free and needs no assets; would help both the Learn Verbs phase and vocabulary. Worth prototyping on one lesson before rolling out everywhere.
+6. **Real images instead of emoji** — emoji work well for concrete nouns (animals, food) but are weaker for abstract concepts and for place/movement prepositions ("under", "opposite") where a real photo/illustration makes the relationship obvious. Flagged in an earlier review — still open.
+
+### Lower priority / polish
+7. **Overall progress dashboard** — a "My Progress" screen aggregating best scores across all rounds/lessons (data already saved in localStorage per round — just needs a view).
+8. **Streak/motivation elements** — daily streak counter, or a badge for completing a full tense (all lessons + phases).
+9. **Mobile testing pass** — responsive CSS exists but hasn't been tested on an actual small screen; touch-target sizing for the sentence-builder word chips is worth double-checking.
+10. **Accessibility pass** — keyboard navigation for option buttons, ARIA labels, color-contrast check (currently relies on color alone for correct/incorrect in a couple of spots).
+
+---
+
+## Notes on scope/credits
+
+Given the credit-conscious approach so far, suggested next batch (highest value per unit effort):
+1. Fill in the 3rd lesson for each existing tense (reuses existing engines, pure content work)
+2. Expand the 4 thin vocabulary topics to 2+ rounds each
+3. Then decide: new grammar tenses vs. new sections (Phrasal Verbs / Everyday Phrases) vs. platform features (audio, difficulty modes)
