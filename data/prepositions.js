@@ -1,6 +1,3 @@
-// Prepositions section: three categories, each with three rounds of six questions.
-// `visual` is an emoji placeholder — swap for real illustrations later.
-// To extend: add a round object, or add questions to an existing round.
 window.PREPOSITIONS = {
   time: {
     id: 'time',
@@ -10,7 +7,7 @@ window.PREPOSITIONS = {
     rounds: [
       {
         title: 'Round 1 — at, on, in',
-        hint: 'at = clock times · on = days and dates · in = months, years, seasons',
+        hint: 'at = clock times & holidays · on = days and dates · in = months, years, seasons & parts of the day',
         questions: [
           { visual: '🕒', question: 'The meeting starts ___ 3 o\'clock.', options: ['at', 'on', 'in', 'for'], answer: 'at' },
           { visual: '🌸', question: 'I was born ___ May.', options: ['in', 'at', 'on', 'since'], answer: 'in' },
@@ -18,11 +15,17 @@ window.PREPOSITIONS = {
           { visual: '⏰', question: 'She wakes up ___ 7:30 every day.', options: ['at', 'in', 'on', 'during'], answer: 'at' },
           { visual: '🎂', question: 'My birthday is ___ December 25th.', options: ['on', 'in', 'at', 'for'], answer: 'on' },
           { visual: '❄️', question: 'It gets very cold ___ winter.', options: ['in', 'on', 'at', 'until'], answer: 'in' },
+          { visual: '🌅', question: 'I like to jog ___ the morning.', options: ['in', 'at', 'on', 'for'], answer: 'in' },
+          { visual: '🎄', question: 'We always eat together ___ Christmas.', options: ['at', 'on', 'in', 'since'], answer: 'at' },
+          { visual: '🌙', question: 'The stars are brightest ___ night.', options: ['at', 'in', 'on', 'by'], answer: 'at' },
+          { visual: '🗓️', question: 'The project started ___ 2024.', options: ['in', 'at', 'on', 'during'], answer: 'in' },
+          { visual: '☀️', question: 'We\'re going swimming ___ Saturday afternoon.', options: ['on', 'in', 'at', 'for'], answer: 'on' },
+          { visual: '🕛', question: 'The shop closes ___ midnight.', options: ['at', 'on', 'in', 'by'], answer: 'at' },
         ],
       },
       {
         title: 'Round 2 — since, for, ago, during',
-        hint: 'since = a starting point · for = a length of time · ago = back from now',
+        hint: 'since = a starting point · for = a length of time · ago = back from now · during = within an event',
         questions: [
           { visual: '🏠', question: 'I have lived here ___ 2019.', options: ['since', 'for', 'ago', 'during'], answer: 'since' },
           { visual: '⌛', question: 'We waited ___ two hours.', options: ['for', 'since', 'during', 'by'], answer: 'for' },
@@ -30,11 +33,17 @@ window.PREPOSITIONS = {
           { visual: '🎬', question: 'He fell asleep ___ the movie.', options: ['during', 'for', 'since', 'until'], answer: 'during' },
           { visual: '💍', question: 'They have been married ___ ten years.', options: ['for', 'since', 'ago', 'in'], answer: 'for' },
           { visual: '☀️', question: 'I haven\'t seen him ___ last summer.', options: ['since', 'for', 'during', 'ago'], answer: 'since' },
+          { visual: '📱', question: 'She called me twenty minutes ___.', options: ['ago', 'since', 'for', 'during'], answer: 'ago' },
+          { visual: '🎓', question: 'He has been studying English ___ five years.', options: ['for', 'since', 'ago', 'during'], answer: 'for' },
+          { visual: '🌧️', question: '___ the storm, nobody went outside.', options: ['During', 'For', 'Since', 'Ago'], answer: 'During' },
+          { visual: '👶', question: 'She has been a teacher ___ 2015.', options: ['since', 'for', 'ago', 'during'], answer: 'since' },
+          { visual: '🏥', question: 'The meeting lasted ___ an hour.', options: ['for', 'since', 'during', 'ago'], answer: 'for' },
+          { visual: '🏰', question: 'This castle was built centuries ___.', options: ['ago', 'since', 'for', 'during'], answer: 'ago' },
         ],
       },
       {
-        title: 'Round 3 — before, after, until, by, from, in',
-        hint: 'until = up to that moment · by = not later than · in = after a period from now',
+        title: 'Round 3 — before, after, until, by, from…to',
+        hint: 'until = up to that moment · by = not later than · from…to = start and end points',
         questions: [
           { visual: '📚', question: 'Finish your homework ___ dinner.', options: ['before', 'until', 'by', 'since'], answer: 'before' },
           { visual: '🌧️', question: 'We\'ll stay inside ___ the rain stops.', options: ['until', 'by', 'before', 'for'], answer: 'until' },
@@ -42,6 +51,12 @@ window.PREPOSITIONS = {
           { visual: '📝', question: 'Please submit the form ___ Friday at the latest.', options: ['by', 'until', 'from', 'during'], answer: 'by' },
           { visual: '🚶', question: 'Let\'s go for a walk ___ lunch.', options: ['after', 'until', 'since', 'by'], answer: 'after' },
           { visual: '🚆', question: 'The train leaves ___ ten minutes.', options: ['in', 'on', 'at', 'for'], answer: 'in' },
+          { visual: '🦷', question: 'Brush your teeth ___ breakfast.', options: ['after', 'until', 'by', 'from'], answer: 'after' },
+          { visual: '💤', question: 'Don\'t eat anything ___ midnight.', options: ['after', 'by', 'from', 'before'], answer: 'after' },
+          { visual: '📧', question: 'Please reply ___ the end of the week.', options: ['by', 'until', 'after', 'from'], answer: 'by' },
+          { visual: '🎓', question: 'You must study hard ___ the exam starts.', options: ['before', 'after', 'by', 'from'], answer: 'before' },
+          { visual: '🏋️', question: 'I\'ll wait here ___ you come back.', options: ['until', 'by', 'before', 'after'], answer: 'until' },
+          { visual: '🏖️', question: 'The holiday runs ___ July to September.', options: ['from', 'since', 'by', 'until'], answer: 'from' },
         ],
       },
     ],
@@ -55,7 +70,7 @@ window.PREPOSITIONS = {
     rounds: [
       {
         title: 'Round 1 — at, on, in',
-        hint: 'in = inside something · on = touching a surface · at = a specific point',
+        hint: 'in = inside something · on = touching a surface · at = a specific point or place',
         questions: [
           { visual: '🔑', question: 'The keys are ___ the table.', options: ['on', 'in', 'at', 'under'], answer: 'on' },
           { visual: '🗼', question: 'She lives ___ Paris.', options: ['in', 'at', 'on', 'near'], answer: 'in' },
@@ -63,11 +78,17 @@ window.PREPOSITIONS = {
           { visual: '🥛', question: 'The milk is ___ the fridge.', options: ['in', 'on', 'at', 'above'], answer: 'in' },
           { visual: '🖼️', question: 'There\'s a picture ___ the wall.', options: ['on', 'in', 'at', 'under'], answer: 'on' },
           { visual: '🏡', question: 'He is ___ home right now.', options: ['at', 'in', 'on', 'by'], answer: 'at' },
+          { visual: '📦', question: 'The toys are ___ the box.', options: ['in', 'on', 'at', 'over'], answer: 'in' },
+          { visual: '🚌', question: 'She\'s waiting ___ the bus station.', options: ['at', 'in', 'on', 'to'], answer: 'at' },
+          { visual: '📖', question: 'Your name is ___ the first page.', options: ['on', 'in', 'at', 'under'], answer: 'on' },
+          { visual: '🏢', question: 'My father works ___ an office.', options: ['in', 'at', 'on', 'by'], answer: 'in' },
+          { visual: '🪑', question: 'The cat is sitting ___ the chair.', options: ['on', 'in', 'at', 'under'], answer: 'on' },
+          { visual: '🏟️', question: 'We\'ll meet ___ the entrance.', options: ['at', 'on', 'in', 'above'], answer: 'at' },
         ],
       },
       {
         title: 'Round 2 — under, over, above, below, between, among',
-        hint: 'between = two things · among = many things · above/below = higher/lower',
+        hint: 'between = two things · among = many things · above/below = higher/lower (not touching)',
         questions: [
           { visual: '🐱', question: 'The cat is sleeping ___ the bed.', options: ['under', 'over', 'on', 'between'], answer: 'under' },
           { visual: '💡', question: 'The lamp hangs ___ the table.', options: ['above', 'under', 'between', 'among'], answer: 'above' },
@@ -75,6 +96,12 @@ window.PREPOSITIONS = {
           { visual: '✍️', question: 'Write your name ___ the line.', options: ['below', 'above', 'among', 'over'], answer: 'below' },
           { visual: '👥', question: 'She stood ___ a crowd of people.', options: ['among', 'between', 'above', 'under'], answer: 'among' },
           { visual: '✈️', question: 'A plane flew ___ the city.', options: ['over', 'under', 'below', 'among'], answer: 'over' },
+          { visual: '🌈', question: 'The rainbow appeared ___ the mountains.', options: ['above', 'below', 'between', 'under'], answer: 'above' },
+          { visual: '🐕', question: 'The dog hid ___ the table during the fireworks.', options: ['under', 'over', 'between', 'above'], answer: 'under' },
+          { visual: '🎒', question: 'My bag is ___ the blue one and the red one.', options: ['between', 'among', 'under', 'over'], answer: 'between' },
+          { visual: '🌊', question: 'The submarine sailed ___ the surface.', options: ['below', 'above', 'over', 'between'], answer: 'below' },
+          { visual: '🌳', question: 'We sat ___ the trees in the forest.', options: ['among', 'between', 'under', 'above'], answer: 'among' },
+          { visual: '🌉', question: 'The bridge goes ___ the river.', options: ['over', 'under', 'below', 'among'], answer: 'over' },
         ],
       },
       {
@@ -82,11 +109,17 @@ window.PREPOSITIONS = {
         hint: 'opposite = facing, on the other side · next to = beside · near = close to',
         questions: [
           { visual: '🌳', question: 'The garden is ___ the house.', options: ['behind', 'in front of', 'opposite', 'inside'], answer: 'behind' },
-          { visual: '🚗', question: 'He parked ___ the door, blocking the way in.', options: ['in front of', 'behind', 'inside', 'near'], answer: 'in front of' },
+          { visual: '🚗', question: 'He parked ___ the door, blocking the entrance.', options: ['in front of', 'behind', 'inside', 'near'], answer: 'in front of' },
           { visual: '🪑', question: 'Sit ___ me — there\'s a free chair here.', options: ['next to', 'opposite', 'behind', 'inside'], answer: 'next to' },
           { visual: '🏨', question: 'The hotel is ___ the airport, only five minutes away.', options: ['near', 'inside', 'opposite', 'behind'], answer: 'near' },
           { visual: '💊', question: 'The pharmacy is ___ the bank, on the other side of the street.', options: ['opposite', 'next to', 'inside', 'behind'], answer: 'opposite' },
           { visual: '🚙', question: 'Stay ___ the car until it stops raining.', options: ['inside', 'outside', 'near', 'in front of'], answer: 'inside' },
+          { visual: '🏫', question: 'The playground is ___ the school building.', options: ['behind', 'inside', 'opposite', 'near'], answer: 'behind' },
+          { visual: '🪞', question: 'She was standing ___ the mirror.', options: ['in front of', 'behind', 'next to', 'inside'], answer: 'in front of' },
+          { visual: '🏠', question: 'The supermarket is ___ our house, just a short walk.', options: ['near', 'inside', 'opposite', 'behind'], answer: 'near' },
+          { visual: '🚉', question: 'The café is ___ the train station, right across the road.', options: ['opposite', 'behind', 'near', 'inside'], answer: 'opposite' },
+          { visual: '🛋️', question: 'Put the lamp ___ the sofa.', options: ['next to', 'behind', 'opposite', 'inside'], answer: 'next to' },
+          { visual: '📮', question: 'There are letters ___ the postbox.', options: ['inside', 'near', 'opposite', 'in front of'], answer: 'inside' },
         ],
       },
     ],
@@ -100,7 +133,7 @@ window.PREPOSITIONS = {
     rounds: [
       {
         title: 'Round 1 — to, into, onto, out of',
-        hint: 'to = towards a destination · into = entering · out of = leaving',
+        hint: 'to = towards a destination · into = entering · onto = onto a surface · out of = leaving',
         questions: [
           { visual: '🏖️', question: 'We are going ___ the beach.', options: ['to', 'into', 'onto', 'at'], answer: 'to' },
           { visual: '🚪', question: 'She walked ___ the room and sat down.', options: ['into', 'to', 'onto', 'out of'], answer: 'into' },
@@ -108,11 +141,17 @@ window.PREPOSITIONS = {
           { visual: '🐈', question: 'The cat jumped ___ the table.', options: ['onto', 'into', 'out of', 'to'], answer: 'onto' },
           { visual: '🚘', question: 'I\'m driving ___ London tomorrow.', options: ['to', 'into', 'at', 'onto'], answer: 'to' },
           { visual: '🚕', question: 'Please get ___ the car — we\'re leaving now.', options: ['into', 'onto', 'out of', 'to'], answer: 'into' },
+          { visual: '🏊', question: 'The children jumped ___ the swimming pool.', options: ['into', 'onto', 'to', 'out of'], answer: 'into' },
+          { visual: '🚶‍♀️', question: 'She climbed ___ the roof to fix the antenna.', options: ['onto', 'into', 'to', 'out of'], answer: 'onto' },
+          { visual: '🐟', question: 'The fish jumped ___ the water.', options: ['out of', 'into', 'onto', 'to'], answer: 'out of' },
+          { visual: '🏫', question: 'The children ran ___ school.', options: ['to', 'into', 'onto', 'out of'], answer: 'to' },
+          { visual: '🛏️', question: 'She fell ___ bed because she was so tired.', options: ['onto', 'into', 'to', 'out of'], answer: 'onto' },
+          { visual: '🚗', question: 'We got ___ the taxi and walked home.', options: ['out of', 'into', 'onto', 'to'], answer: 'out of' },
         ],
       },
       {
         title: 'Round 2 — across, through, along, around',
-        hint: 'across = one side to the other · through = in and out the far end · along = following a line',
+        hint: 'across = one side to the other · through = in one end, out the other · along = following a line · around = circling',
         questions: [
           { visual: '🏊', question: 'They swam ___ the river to the other side.', options: ['across', 'through', 'along', 'around'], answer: 'across' },
           { visual: '🚇', question: 'The train went ___ a long tunnel.', options: ['through', 'across', 'along', 'over'], answer: 'through' },
@@ -120,6 +159,12 @@ window.PREPOSITIONS = {
           { visual: '🌍', question: 'The Earth moves ___ the Sun.', options: ['around', 'across', 'along', 'through'], answer: 'around' },
           { visual: '🌲', question: 'She ran ___ the forest to escape.', options: ['through', 'across', 'along', 'onto'], answer: 'through' },
           { visual: '🏃‍♂️', question: 'The children ran ___ the corner and disappeared.', options: ['around', 'along', 'across', 'through'], answer: 'around' },
+          { visual: '🚶', question: 'We walked ___ the road at the crossing.', options: ['across', 'through', 'along', 'around'], answer: 'across' },
+          { visual: '🚗', question: 'Drive ___ this road until you see the sign.', options: ['along', 'across', 'through', 'around'], answer: 'along' },
+          { visual: '🚂', question: 'The train passed ___ several small towns.', options: ['through', 'across', 'along', 'around'], answer: 'through' },
+          { visual: '🐕', question: 'The dog ran ___ the park chasing squirrels.', options: ['around', 'across', 'through', 'along'], answer: 'around' },
+          { visual: '🚴', question: 'We cycled ___ the river path all morning.', options: ['along', 'across', 'around', 'through'], answer: 'along' },
+          { visual: '🐔', question: 'Why did the chicken walk ___ the road?', options: ['across', 'along', 'through', 'around'], answer: 'across' },
         ],
       },
       {
@@ -132,6 +177,12 @@ window.PREPOSITIONS = {
           { visual: '🏫', question: 'We drove ___ the school on the way home.', options: ['past', 'through', 'towards', 'off'], answer: 'past' },
           { visual: '😊', question: 'She walked ___ me with a big smile.', options: ['towards', 'past', 'off', 'across'], answer: 'towards' },
           { visual: '🐴', question: 'The horse jumped ___ the fence.', options: ['over', 'under', 'through', 'off'], answer: 'over' },
+          { visual: '⛰️', question: 'We hiked ___ the mountain all day.', options: ['up', 'down', 'past', 'off'], answer: 'up' },
+          { visual: '🎿', question: 'The skier raced ___ the slope.', options: ['down', 'up', 'off', 'past'], answer: 'down' },
+          { visual: '🛹', question: 'He skateboarded ___ the ramp at full speed.', options: ['off', 'up', 'past', 'towards'], answer: 'off' },
+          { visual: '🏥', question: 'She ran ___ the hospital as fast as she could.', options: ['towards', 'past', 'over', 'down'], answer: 'towards' },
+          { visual: '🚶‍♂️', question: 'I walked ___ the shop without stopping.', options: ['past', 'towards', 'over', 'off'], answer: 'past' },
+          { visual: '🧗', question: 'The ball rolled ___ the wall into the garden.', options: ['over', 'up', 'past', 'off'], answer: 'over' },
         ],
       },
     ],
