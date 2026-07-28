@@ -493,6 +493,134 @@ main {
 .tag-new { background: var(--success-light); color: var(--success); }
 .tag-popular { background: var(--accent-light); color: #92400e; }
 
+/* ──────── VOCAB MODE PICKER ──────── */
+.mode-picker { margin-bottom: 1.5rem; }
+.mode-picker p { margin: 0 0 0.75rem; }
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem;
+}
+
+.mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.9rem 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: var(--card-bg);
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.mode-btn .mode-icon { font-size: 1.5rem; }
+.mode-btn strong { font-size: 0.9rem; }
+.mode-btn span:last-child { font-size: 0.75rem; color: var(--muted); }
+
+.mode-btn:hover { border-color: var(--primary); }
+
+.mode-btn.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+.russian-label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* ──────── SENTENCE BUILDER ──────── */
+.sb-instruction {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+
+.sb-answer-area {
+  min-height: 56px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+  background: #f8fafc;
+}
+
+.sb-answer-area.sb-correct {
+  border-color: var(--success);
+  background: var(--success-light);
+  border-style: solid;
+}
+
+.sb-answer-area.sb-incorrect {
+  border-color: var(--error);
+  background: var(--error-light);
+  border-style: solid;
+  animation: shake 0.4s ease;
+}
+
+.sb-chip {
+  background: var(--primary);
+  color: white;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.1s;
+  animation: popIn 0.2s ease;
+}
+
+.sb-chip:hover { transform: scale(0.95); opacity: 0.85; }
+
+.sb-word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sb-word {
+  background: var(--bg);
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  font: inherit;
+  transition: all 0.15s;
+}
+
+.sb-word:hover:not(.sb-used) {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.sb-word.sb-used {
+  opacity: 0.3;
+  cursor: default;
+  transform: scale(0.95);
+}
+
+.sb-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 /* ──────── RESPONSIVE ──────── */
 @media (max-width: 480px) {
   .app-header h1 { font-size: 1.5rem; }

@@ -1,19 +1,19 @@
 window.GAMES.push({
-  id: 'grammar',
-  icon: '✍️',
-  title: 'Grammar — Tenses',
-  description: 'Present Simple, Past Simple, Continuous and more',
+  id: 'sentences',
+  icon: '🧩',
+  title: 'Sentence Builder',
+  description: 'Rearrange words to build correct sentences',
   render(container) {
-    renderGrammarHome(container);
+    renderSentenceHome(container);
   },
 });
 
-function renderGrammarHome(container) {
-  const categories = Object.values(window.GRAMMAR);
+function renderSentenceHome(container) {
+  const categories = Object.values(window.SENTENCES);
 
   container.innerHTML = `
-    <h2 class="section-heading">Grammar — Tenses</h2>
-    <p class="section-sub">Choose a tense to practise.</p>
+    <h2 class="section-heading">Sentence Builder</h2>
+    <p class="section-sub">Put the words in the right order to make sentences.</p>
     <div class="game-grid"></div>
   `;
 
@@ -26,24 +26,24 @@ function renderGrammarHome(container) {
       <div class="icon">${cat.icon}</div>
       <h3>${cat.title}</h3>
       <p>${cat.description}</p>
-      <span class="tag tag-popular">${totalQs} Qs</span>
+      <span class="tag tag-new">${totalQs} sentences</span>
     `;
-    card.addEventListener('click', () => renderGrammarRounds(container, cat));
+    card.addEventListener('click', () => renderSentenceRounds(container, cat));
     grid.appendChild(card);
   });
 }
 
-function renderGrammarRounds(container, category) {
+function renderSentenceRounds(container, category) {
   const allQuestions = category.rounds.flatMap((r) => r.questions);
 
   container.innerHTML = `
-    <button class="ghost-btn back-inline">← All tenses</button>
+    <button class="ghost-btn back-inline">← All categories</button>
     <h2 class="section-heading">${category.icon} ${category.title}</h2>
     <p class="section-sub">${category.description}</p>
     <div class="round-list"></div>
   `;
 
-  container.querySelector('.back-inline').addEventListener('click', () => renderGrammarHome(container));
+  container.querySelector('.back-inline').addEventListener('click', () => renderSentenceHome(container));
 
   const list = container.querySelector('.round-list');
 
@@ -59,12 +59,12 @@ function renderGrammarRounds(container, category) {
       <div class="round-count">${round.questions.length} Qs</div>
     `;
     item.addEventListener('click', () => {
-      runQuiz(container, {
+      runSentenceBuilder(container, {
         title: `${category.title} — ${round.title}`,
         questions: round.questions,
         hint: round.hint,
-        storageKey: `grammar:${category.id}:${i}`,
-        onExit: () => renderGrammarRounds(container, category),
+        storageKey: `sentences:${category.id}:${i}`,
+        onExit: () => renderSentenceRounds(container, category),
         exitLabel: '← Back to rounds',
       });
     });
@@ -83,11 +83,11 @@ function renderGrammarRounds(container, category) {
       <div class="round-count">${allQuestions.length} Qs</div>
     `;
     challenge.addEventListener('click', () => {
-      runQuiz(container, {
+      runSentenceBuilder(container, {
         title: `${category.title} — Mixed`,
         questions: allQuestions,
-        storageKey: `grammar:${category.id}:mixed`,
-        onExit: () => renderGrammarRounds(container, category),
+        storageKey: `sentences:${category.id}:mixed`,
+        onExit: () => renderSentenceRounds(container, category),
         exitLabel: '← Back to rounds',
       });
     });
