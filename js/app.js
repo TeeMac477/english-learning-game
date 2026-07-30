@@ -1,24 +1,62 @@
-// Simple game registry so new games can be added by pushing to window.GAMES
-// (initialized in index.html, before game modules load) and providing a
-// render(container) function.
+// App controller with Learn/Practice tabs and game registry.
 (function () {
-  const homeScreen = document.getElementById('home-screen');
-  const gameScreen = document.getElementById('game-screen');
-  const gameGrid = document.getElementById('game-grid');
-  const gameContainer = document.getElementById('game-container');
-  const backBtn = document.getElementById('back-btn');
+  var homeScreen = document.getElementById('home-screen');
+  var gameScreen = document.getElementById('game-screen');
+  var gameGrid = document.getElementById('game-grid');
+  var gameContainer = document.getElementById('game-container');
+  var backBtn = document.getElementById('back-btn');
+  var learnTab = document.getElementById('tab-learn');
+  var practiceTab = document.getElementById('tab-practice');
+  var learnSection = document.getElementById('learn-section');
+  var practiceSection = document.getElementById('practice-section');
+  var currentTab = 'learn';
+
+  function switchTab(tab) {
+    currentTab = tab;
+    if (tab === 'learn') {
+      learnTab.classList.add('active');
+      practiceTab.classList.remove('active');
+      learnSection.classList.remove('hidden');
+      practiceSection.classList.add('hidden');
+      gameScreen.classList.add('hidden');
+      showLearnHome();
+    } else {
+      practiceTab.classList.add('active');
+      learnTab.classList.remove('active');
+      practiceSection.classList.remove('hidden');
+      learnSection.classList.add('hidden');
+      gameScreen.classList.add('hidden');
+      renderHome();
+    }
+  }
+
+  learnTab.addEventListener('click', function () { switchTab('learn'); });
+  practiceTab.addEventListener('click', function () { switchTab('practice'); });
+
+  function showLearnHome() {
+    renderLearnHome(
+      learnSection,
+      function onOpenUnit(levelId, unit) {
+        renderUnit(learnSection, levelId, unit, function () {
+          showLearnHome();
+        });
+      },
+      function onBack() {
+        switchTab('learn');
+      }
+    );
+  }
 
   function renderHome() {
     gameGrid.innerHTML = '';
-    window.GAMES.forEach((game) => {
-      const card = document.createElement('div');
+    window.GAMES.forEach(function (game) {
+      var card = document.createElement('div');
       card.className = 'game-card';
-      card.innerHTML = `
-        <div class="icon">${game.icon}</div>
-        <h3>${game.title}</h3>
-        <p>${game.description}</p>
-      `;
-      card.addEventListener('click', () => openGame(game));
+      card.innerHTML =
+        '<div class="icon">' + game.icon + '</div>' +
+        '<h3>' + game.title + '</h3>' +
+        '<p>' + game.description + '</p>';
+      card.addEventListener('click', function () { openGame(game); });
       gameGrid.appendChild(card);
     });
   }
@@ -30,6 +68,14 @@
     game.render(gameContainer);
   }
 
+  window.openGameById = function (id) {
+    var game = window.GAMES.find(function (g) { return g.id === id; });
+    if (game) {
+      switchTab('practice');
+      setTimeout(function () { openGame(game); }, 50);
+    }
+  };
+
   function goHome() {
     gameScreen.classList.add('hidden');
     homeScreen.classList.remove('hidden');
@@ -38,5 +84,5 @@
 
   backBtn.addEventListener('click', goHome);
 
-  renderHome();
+  switchTab('learn');
 })();

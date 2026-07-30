@@ -4,17 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>English Learning Game</title>
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/learn.css?v=2">
 </head>
 <body>
   <header class="app-header">
-    <h1>🎮 English Learning Game</h1>
-    <p class="subtitle">Pick a game and start learning!</p>
+    <h1>📚 English for Russian Speakers</h1>
+    <p class="subtitle">Английский для русскоговорящих · A0 → A1+</p>
+    <nav class="tab-nav">
+      <button id="tab-learn" class="tab-btn active">📖 Learn</button>
+      <button id="tab-practice" class="tab-btn">🎮 Practice</button>
+    </nav>
   </header>
 
   <main id="app">
-    <section id="home-screen" class="screen">
-      <div id="game-grid" class="game-grid"></div>
+    <section id="learn-section" class="screen"></section>
+
+    <section id="practice-section" class="screen hidden">
+      <section id="home-screen" class="screen">
+        <div id="game-grid" class="game-grid"></div>
+      </section>
     </section>
 
     <section id="game-screen" class="screen hidden">
@@ -29,16 +38,19 @@
   <script src="data/prepositions.js"></script>
   <script src="data/sentences.js"></script>
   <script src="data/lessons.js"></script>
+  <script src="data/a0-content.js?v=2"></script>
+  <script src="data/a1-content.js?v=2"></script>
   <!-- Engines -->
   <script src="js/quiz-engine.js"></script>
   <script src="js/sentence-builder.js"></script>
   <script src="js/lesson-runner.js"></script>
+  <script src="js/learn-viewer.js?v=2"></script>
   <!-- Game modules -->
   <script src="js/games/prepositions.js"></script>
   <script src="js/games/vocabulary.js"></script>
   <script src="js/games/grammar.js"></script>
   <script src="js/games/sentences.js"></script>
   <!-- App init -->
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>
