@@ -36,6 +36,20 @@ function renderVocabHome(container) {
 function renderVocabRounds(container, category) {
   const allQuestions = category.rounds.flatMap((r) => r.questions);
 
+  const typeConfig = {
+    vocab:   { label: 'Vocabulary', icon: '📖', desc: 'Words & nouns' },
+    verbs:   { label: 'Verbs',      icon: '⚡', desc: 'Action words' },
+    phrases: { label: 'Phrases',    icon: '💬', desc: 'Useful phrases' },
+  };
+
+  const byType = {};
+  category.rounds.forEach(function(r) {
+    var t = r.type || 'vocab';
+    if (!byType[t]) byType[t] = [];
+    byType[t] = byType[t].concat(r.questions);
+  });
+  const availableTypes = ['vocab', 'verbs', 'phrases'].filter(function(t) { return byType[t]; });
+
   container.innerHTML = `
     <button class="ghost-btn back-inline">← All topics</button>
     <h2 class="section-heading">${category.icon} ${category.title}</h2>
@@ -72,38 +86,40 @@ function renderVocabRounds(container, category) {
 
   const list = container.querySelector('.round-list');
 
-  category.rounds.forEach((round, i) => {
-    const item = document.createElement('button');
+  availableTypes.forEach(function(t) {
+    var cfg = typeConfig[t];
+    var qs = byType[t];
+    var item = document.createElement('button');
     item.className = 'round-item';
     item.innerHTML = `
-      <div class="round-number">${i + 1}</div>
+      <div class="round-number">${cfg.icon}</div>
       <div class="round-info">
-        <strong>${round.title}</strong>
-        <span>${round.questions.length} words</span>
+        <strong>${cfg.label}</strong>
+        <span>${cfg.desc}</span>
       </div>
-      <div class="round-count">${round.questions.length} Qs</div>
+      <div class="round-count">${qs.length} Qs</div>
     `;
-    item.addEventListener('click', () => {
-      startVocabQuiz(container, category, round.title, round.questions, selectedMode, `vocab:${category.id}:${i}`, () => renderVocabRounds(container, category));
+    item.addEventListener('click', function() {
+      startVocabQuiz(container, category, cfg.label, qs, selectedMode, 'vocab:' + category.id + ':' + t, function() { renderVocabRounds(container, category); });
     });
     list.appendChild(item);
   });
 
-  if (category.rounds.length > 1) {
-    const challenge = document.createElement('button');
-    challenge.className = 'round-item challenge';
-    challenge.innerHTML = `
+  if (availableTypes.length > 1 || category.rounds.length > 1) {
+    var allBtn = document.createElement('button');
+    allBtn.className = 'round-item challenge';
+    allBtn.innerHTML = `
       <div class="round-number">🏆</div>
       <div class="round-info">
-        <strong>Mixed Challenge</strong>
-        <span>All rounds together</span>
+        <strong>All Together</strong>
+        <span>Everything mixed</span>
       </div>
       <div class="round-count">${allQuestions.length} Qs</div>
     `;
-    challenge.addEventListener('click', () => {
-      startVocabQuiz(container, category, 'Mixed Challenge', allQuestions, selectedMode, `vocab:${category.id}:mixed`, () => renderVocabRounds(container, category));
+    allBtn.addEventListener('click', function() {
+      startVocabQuiz(container, category, 'All Together', allQuestions, selectedMode, 'vocab:' + category.id + ':all', function() { renderVocabRounds(container, category); });
     });
-    list.appendChild(challenge);
+    list.appendChild(allBtn);
   }
 }
 
