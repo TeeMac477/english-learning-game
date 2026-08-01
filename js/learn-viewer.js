@@ -4,8 +4,8 @@
 function renderLearnHome(container, onOpenUnit, onBack) {
   var levels = [
     { id: 'a0', title: 'A0 — Complete Beginner', titleRu: 'Полный новичок', color: '#10b981', data: window.A0_CONTENT, desc: 'Greetings, numbers, family, self-intro' },
-    { id: 'a1', title: 'A1 — Elementary', titleRu: 'Элементарный', color: '#6366f1', data: window.A1_CONTENT, desc: 'To be, present simple, jobs, questions' },
-    { id: 'a1plus', title: 'A1+ — Pre-Intermediate', titleRu: 'Ниже среднего', color: '#f59e0b', data: window.A1PLUS_CONTENT, desc: 'Airport, restaurant, shopping' },
+    { id: 'a1', title: 'A1 — Elementary', titleRu: 'Элементарный', color: '#6366f1', data: window.A1_CONTENT, desc: 'Grammar, vocabulary, reading & exercises' },
+    { id: 'a1plus', title: 'A1+ — Pre-Intermediate', titleRu: 'Ниже среднего', color: '#f59e0b', data: window.A1PLUS_CONTENT || [], desc: 'Past tense, comparatives, reading & situations' },
   ];
 
   var html = '<div class="learn-home">';
@@ -111,6 +111,109 @@ function renderUnit(container, levelId, unit, onBack) {
         btn.textContent = target && target.classList.contains('expanded') ? 'Show less' : 'Show all';
       });
     });
+
+    // fill-gap interactions
+    container.querySelectorAll('.sl-fg-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.dataset.id;
+        var wrap = document.getElementById(id);
+        if (wrap.classList.contains('sl-answered')) return;
+        var correct = btn.dataset.answer === btn.dataset.correct;
+        var blank = wrap.querySelector('.sl-fg-blank');
+        var fb = wrap.querySelector('.sl-fg-feedback');
+        if (correct) {
+          wrap.classList.add('sl-answered');
+          btn.classList.add('sl-fg-correct');
+          blank.textContent = btn.dataset.answer;
+          blank.classList.add('sl-fg-filled');
+          fb.innerHTML = '<span class="sl-fb-ok">✅ Correct!</span>';
+        } else {
+          btn.classList.add('sl-fg-wrong');
+          fb.innerHTML = '<span class="sl-fb-err">❌ Try again / Попробуйте ещё</span>';
+          setTimeout(function () { btn.classList.remove('sl-fg-wrong'); fb.innerHTML = ''; }, 1200);
+        }
+      });
+    });
+
+    // comprehension interactions
+    container.querySelectorAll('.sl-cmp-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var qid = btn.dataset.qid;
+        var qWrap = container.querySelector('[data-qid="' + qid + '"].sl-cmp-question');
+        if (qWrap.classList.contains('sl-answered')) return;
+        var correct = btn.dataset.answer === btn.dataset.correct;
+        var fb = qWrap.querySelector('.sl-cmp-feedback');
+        if (correct) {
+          qWrap.classList.add('sl-answered');
+          btn.classList.add('sl-cmp-correct');
+          fb.innerHTML = '<span class="sl-fb-ok">✅ Correct!</span>';
+        } else {
+          btn.classList.add('sl-cmp-wrong');
+          fb.innerHTML = '<span class="sl-fb-err">❌ Try again / Попробуйте ещё</span>';
+          setTimeout(function () { btn.classList.remove('sl-cmp-wrong'); fb.innerHTML = ''; }, 1200);
+        }
+      });
+    });
+
+    // vocab-match interactions
+    container.querySelectorAll('.sl-vocab-match').forEach(function (wrap) {
+      var selected = null;
+      wrap.querySelectorAll('.sl-vm-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+          if (item.classList.contains('sl-vm-matched')) return;
+          if (!selected) {
+            selected = item;
+            item.classList.add('sl-vm-selected');
+          } else if (selected === item) {
+            selected.classList.remove('sl-vm-selected');
+            selected = null;
+          } else {
+            var idx1 = selected.dataset.idx;
+            var idx2 = item.dataset.idx;
+            if (idx1 === idx2) {
+              selected.classList.remove('sl-vm-selected');
+              selected.classList.add('sl-vm-matched');
+              item.classList.add('sl-vm-matched');
+              selected = null;
+              var allMatched = wrap.querySelectorAll('.sl-vm-item:not(.sl-vm-matched)').length === 0;
+              if (allMatched) {
+                var fb = wrap.querySelector('.sl-vm-feedback');
+                fb.innerHTML = '<span class="sl-fb-ok">✅ All matched! / Всё правильно!</span>';
+              }
+            } else {
+              selected.classList.add('sl-vm-shake');
+              item.classList.add('sl-vm-shake');
+              var s1 = selected;
+              setTimeout(function () {
+                s1.classList.remove('sl-vm-selected', 'sl-vm-shake');
+                item.classList.remove('sl-vm-shake');
+              }, 600);
+              selected = null;
+            }
+          }
+        });
+      });
+    });
+
+    // error-correction interactions
+    container.querySelectorAll('.sl-ec-word').forEach(function (word) {
+      word.addEventListener('click', function () {
+        var eid = word.dataset.eid;
+        var itemWrap = container.querySelector('[data-eid="' + eid + '"].sl-ec-item');
+        if (itemWrap.classList.contains('sl-answered')) return;
+        var fb = itemWrap.querySelector('.sl-ec-feedback');
+        if (word.dataset.word === word.dataset.error) {
+          itemWrap.classList.add('sl-answered');
+          word.classList.add('sl-ec-found');
+          word.innerHTML = '<s>' + esc(word.dataset.error) + '</s> <strong>' + esc(word.dataset.correction) + '</strong>';
+          fb.innerHTML = '<span class="sl-fb-ok">✅ ' + esc(word.dataset.correction) + '</span>';
+        } else {
+          word.classList.add('sl-ec-miss');
+          fb.innerHTML = '<span class="sl-fb-err">❌ Not this word / Не это слово</span>';
+          setTimeout(function () { word.classList.remove('sl-ec-miss'); fb.innerHTML = ''; }, 1000);
+        }
+      });
+    });
   }
 
   function scrollTop() {
@@ -128,11 +231,25 @@ function renderSlide(s) {
 
     case 'title':
       h += '<div class="sl-title">';
-      h += '<span class="sl-title-icon">' + (s.icon || '') + '</span>';
-      h += '<h2>' + s.title + '</h2>';
-      h += '<p class="sl-title-ru">' + s.titleRu + '</p>';
-      if (s.subtitle) h += '<p class="sl-subtitle">' + s.subtitle + '</p>';
-      if (s.subtitleRu) h += '<p class="sl-subtitle-ru">' + s.subtitleRu + '</p>';
+      if (s.html) {
+        // legacy html format — extract and re-render cleanly
+        var titleMatch = s.html.match(/<h1>(.*?)<\/h1>/);
+        var subMatch = s.html.match(/<p class="subtitle">(.*?)<\/p>/);
+        var bodyParts = s.html.replace(/<h1>.*?<\/h1>/, '').replace(/<p class="subtitle">.*?<\/p>/, '').match(/<p>(.*?)<\/p>/g) || [];
+        h += '<span class="sl-title-icon">' + (s.icon || '') + '</span>';
+        if (titleMatch) h += '<h2>' + titleMatch[1] + '</h2>';
+        if (subMatch) h += '<p class="sl-title-ru">' + subMatch[1] + '</p>';
+        bodyParts.forEach(function(p, i) {
+          var txt = p.replace(/<\/?p>/g, '');
+          h += i === 0 ? '<p class="sl-subtitle">' + txt + '</p>' : '<p class="sl-subtitle-ru">' + txt + '</p>';
+        });
+      } else {
+        h += '<span class="sl-title-icon">' + (s.icon || '') + '</span>';
+        h += '<h2>' + s.title + '</h2>';
+        h += '<p class="sl-title-ru">' + s.titleRu + '</p>';
+        if (s.subtitle) h += '<p class="sl-subtitle">' + s.subtitle + '</p>';
+        if (s.subtitleRu) h += '<p class="sl-subtitle-ru">' + s.subtitleRu + '</p>';
+      }
       h += '</div>';
       break;
 
@@ -151,12 +268,15 @@ function renderSlide(s) {
           h += '<div class="sl-example-card">';
           if (ex.icon) h += '<span class="sl-ex-icon">' + ex.icon + '</span>';
           h += '<div>';
-          h += '<p class="sl-ex-en">' + esc(ex.english) + '</p>';
-          if (ex.russian) h += '<p class="sl-ex-ru">' + esc(ex.russian) + '</p>';
+          h += '<p class="sl-ex-en">' + (ex.english || '') + '</p>';
+          var exRu = ex.russian || ex.textRu;
+          if (exRu) h += '<p class="sl-ex-ru">' + exRu + '</p>';
           h += '</div></div>';
         });
         h += '</div>';
       }
+      if (s.note) h += '<p class="sl-explanation" style="font-style:italic;">' + esc(s.note) + '</p>';
+      if (s.noteRu) h += '<p class="sl-ru">' + esc(s.noteRu) + '</p>';
       break;
 
     case 'rule':
@@ -175,6 +295,18 @@ function renderSlide(s) {
           h += '<span class="sl-rule-subj">' + row.subject + '</span>';
           h += '<span class="sl-rule-verb">' + esc(row.verb) + '</span>';
           if (row.example) h += '<span class="sl-rule-ex">' + esc(row.example) + '</span>';
+          h += '</div>';
+        });
+        h += '</div>';
+      }
+      // legacy A1+ format: rules array [{rule, ruleRu, example}]
+      if (s.rules) {
+        h += '<div class="sl-rule-table">';
+        s.rules.forEach(function (r) {
+          h += '<div class="sl-rule-row" style="flex-direction:column;gap:0.15rem;">';
+          h += '<span style="font-weight:700;font-size:0.9rem;">' + esc(r.rule) + '</span>';
+          if (r.ruleRu) h += '<span class="sl-ru" style="margin:0;">' + esc(r.ruleRu) + '</span>';
+          if (r.example) h += '<span class="sl-rule-ex" style="font-style:italic;">' + esc(r.example) + '</span>';
           h += '</div>';
         });
         h += '</div>';
@@ -252,7 +384,8 @@ function renderSlide(s) {
         h += '<div class="sl-chat-bubble">';
         h += '<p>' + esc(line.text) + '</p>';
         if (line.pronunciation) h += '<p class="sl-pron">' + line.pronunciation + '</p>';
-        if (line.russian) h += '<p class="sl-ru">' + line.russian + '</p>';
+        var lineRu = line.russian || line.textRu;
+        if (lineRu) h += '<p class="sl-ru">' + lineRu + '</p>';
         h += '</div></div>';
       });
       h += '</div></div>';
@@ -285,17 +418,17 @@ function renderSlide(s) {
       if (s.title) h += '<h3>' + s.title + '</h3>';
       if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
       h += '<div class="sl-struct-forms">';
-      s.forms.forEach(function (f) {
-        var cls = f.type === '+' ? 'sl-form-pos' : f.type === '-' ? 'sl-form-neg' : 'sl-form-q';
+      var formItems = s.forms || s.structures || [];
+      formItems.forEach(function (f, fi) {
+        var cls = f.type === '+' ? 'sl-form-pos' : f.type === '-' ? 'sl-form-neg' : f.type === '?' ? 'sl-form-q' : ['sl-form-pos','sl-form-neg','sl-form-q','sl-form-pos'][fi % 4];
         h += '<div class="sl-form-card ' + cls + '">';
-        h += '<span class="sl-form-badge">' + f.type + '</span>';
-        h += '<div class="sl-form-label">' + f.label + '</div>';
+        if (f.type) h += '<span class="sl-form-badge">' + f.type + '</span>';
+        h += '<div class="sl-form-label">' + (f.label || '') + '</div>';
         if (f.labelRu) h += '<div class="sl-ru">' + f.labelRu + '</div>';
-        h += '<div class="sl-form-formula">' + f.formula + '</div>';
+        if (f.formula) h += '<div class="sl-form-formula">' + f.formula + '</div>';
         h += '<div class="sl-form-examples">';
-        f.examples.forEach(function (ex) {
-          h += '<p class="sl-form-ex">' + esc(ex) + '</p>';
-        });
+        var exArr = f.examples || (f.example ? [f.example] : []);
+        exArr.forEach(function (ex) { h += '<p class="sl-form-ex">' + esc(ex) + '</p>'; });
         h += '</div></div>';
       });
       h += '</div></div>';
@@ -337,14 +470,14 @@ function renderSlide(s) {
       if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
       h += '<div class="sl-comp-cols">';
       h += '<div class="sl-comp-col sl-comp-left">';
-      h += '<h4>' + s.left.title + '</h4>';
-      if (s.left.titleRu) h += '<p class="sl-ru">' + s.left.titleRu + '</p>';
-      s.left.examples.forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
+      h += '<h4>' + (s.left.title || s.left.label || '') + '</h4>';
+      if (s.left.titleRu || s.left.labelRu) h += '<p class="sl-ru">' + (s.left.titleRu || s.left.labelRu) + '</p>';
+      (s.left.examples || s.left.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
       h += '</div>';
       h += '<div class="sl-comp-col sl-comp-right">';
-      h += '<h4>' + s.right.title + '</h4>';
-      if (s.right.titleRu) h += '<p class="sl-ru">' + s.right.titleRu + '</p>';
-      s.right.examples.forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
+      h += '<h4>' + (s.right.title || s.right.label || '') + '</h4>';
+      if (s.right.titleRu || s.right.labelRu) h += '<p class="sl-ru">' + (s.right.titleRu || s.right.labelRu) + '</p>';
+      (s.right.examples || s.right.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
       h += '</div></div></div>';
       break;
 
@@ -362,6 +495,133 @@ function renderSlide(s) {
         h += '</div>';
       });
       h += '</div></div>';
+      break;
+
+    case 'fill-gap':
+      var fgId = 'fg-' + Math.random().toString(36).substr(2, 6);
+      h += '<div class="sl-fill-gap" id="' + fgId + '">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      var parts = s.sentence.split('___');
+      h += '<p class="sl-fg-sentence">' + esc(parts[0]) + '<span class="sl-fg-blank" data-id="' + fgId + '">___</span>' + esc(parts[1] || '') + '</p>';
+      h += '<div class="sl-fg-options">';
+      s.options.forEach(function (opt) {
+        h += '<button class="sl-fg-btn" data-answer="' + esc(opt) + '" data-correct="' + esc(s.answer) + '" data-id="' + fgId + '">' + esc(opt) + '</button>';
+      });
+      h += '</div>';
+      h += '<div class="sl-fg-feedback" data-id="' + fgId + '"></div>';
+      h += '</div>';
+      break;
+
+    case 'reading':
+      h += '<div class="sl-reading">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      h += '<div class="sl-reading-text">' + s.text + '</div>';
+      if (s.vocabWords && s.vocabWords.length) {
+        h += '<div class="sl-reading-vocab">';
+        h += '<h4>Key Vocabulary / Ключевые слова</h4>';
+        s.vocabWords.forEach(function (w) {
+          h += '<div class="sl-rv-word">';
+          h += '<strong>' + esc(w.word) + '</strong>';
+          h += '<span> — ' + esc(w.meaning) + '</span>';
+          if (w.meaningRu) h += '<span class="sl-ru"> · ' + esc(w.meaningRu) + '</span>';
+          h += '</div>';
+        });
+        h += '</div>';
+      }
+      h += '</div>';
+      break;
+
+    case 'comprehension':
+      var cmpId = 'cmp-' + Math.random().toString(36).substr(2, 6);
+      h += '<div class="sl-comprehension" id="' + cmpId + '">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      s.questions.forEach(function (q, qi) {
+        var qid = cmpId + '-q' + qi;
+        h += '<div class="sl-cmp-question" data-qid="' + qid + '">';
+        h += '<p class="sl-cmp-q-text"><strong>' + (qi + 1) + '.</strong> ' + esc(q.question) + '</p>';
+        if (q.questionRu) h += '<p class="sl-ru sl-cmp-q-ru">' + esc(q.questionRu) + '</p>';
+        h += '<div class="sl-cmp-options">';
+        q.options.forEach(function (opt) {
+          h += '<button class="sl-cmp-btn" data-answer="' + esc(opt) + '" data-correct="' + esc(q.answer) + '" data-qid="' + qid + '">' + esc(opt) + '</button>';
+        });
+        h += '</div>';
+        h += '<div class="sl-cmp-feedback" data-qid="' + qid + '"></div>';
+        h += '</div>';
+      });
+      h += '</div>';
+      break;
+
+    case 'vocab-match':
+      var vmId = 'vm-' + Math.random().toString(36).substr(2, 6);
+      h += '<div class="sl-vocab-match" id="' + vmId + '">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      var shuffled = s.pairs.slice().sort(function () { return Math.random() - 0.5; });
+      h += '<div class="sl-vm-cols">';
+      h += '<div class="sl-vm-col">';
+      s.pairs.forEach(function (p, i) {
+        h += '<button class="sl-vm-item sl-vm-left" data-idx="' + i + '" data-id="' + vmId + '">' + esc(p.english) + '</button>';
+      });
+      h += '</div>';
+      h += '<div class="sl-vm-col">';
+      shuffled.forEach(function (p) {
+        var origIdx = s.pairs.indexOf(p);
+        h += '<button class="sl-vm-item sl-vm-right" data-idx="' + origIdx + '" data-id="' + vmId + '">' + esc(p.russian) + '</button>';
+      });
+      h += '</div>';
+      h += '</div>';
+      h += '<div class="sl-vm-feedback" data-id="' + vmId + '"></div>';
+      h += '</div>';
+      break;
+
+    case 'error-correction':
+      var ecId = 'ec-' + Math.random().toString(36).substr(2, 6);
+      h += '<div class="sl-error-correction" id="' + ecId + '">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      if (s.instruction) h += '<p class="sl-ec-instr">' + s.instruction + '</p>';
+      if (s.instructionRu) h += '<p class="sl-ru">' + s.instructionRu + '</p>';
+      h += '<div class="sl-ec-sentences">';
+      s.items.forEach(function (item, i) {
+        var eid = ecId + '-e' + i;
+        h += '<div class="sl-ec-item" data-eid="' + eid + '">';
+        h += '<p class="sl-ec-sentence">';
+        var words = item.sentence.split(' ');
+        words.forEach(function (w, wi) {
+          h += '<span class="sl-ec-word" data-word="' + esc(w) + '" data-error="' + esc(item.errorWord) + '" data-correction="' + esc(item.correction) + '" data-eid="' + eid + '">' + esc(w) + '</span> ';
+        });
+        h += '</p>';
+        h += '<div class="sl-ec-feedback" data-eid="' + eid + '"></div>';
+        h += '</div>';
+      });
+      h += '</div></div>';
+      break;
+
+    case 'grammar-table':
+      h += '<div class="sl-grammar-table">';
+      if (s.title) h += '<h3>' + s.title + '</h3>';
+      if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
+      h += '<div class="sl-gt-wrap"><table class="sl-gt">';
+      if (s.headers) {
+        h += '<thead><tr>';
+        s.headers.forEach(function (hd) { h += '<th>' + hd + '</th>'; });
+        h += '</tr></thead>';
+      }
+      h += '<tbody>';
+      s.rows.forEach(function (row) {
+        h += '<tr>';
+        row.forEach(function (cell) {
+          h += '<td>' + cell + '</td>';
+        });
+        h += '</tr>';
+      });
+      h += '</tbody></table></div>';
+      if (s.note) h += '<p class="sl-gt-note">' + s.note + '</p>';
+      if (s.noteRu) h += '<p class="sl-ru">' + s.noteRu + '</p>';
+      h += '</div>';
       break;
   }
   return h;
