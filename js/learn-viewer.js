@@ -268,9 +268,9 @@ function renderSlide(s) {
           h += '<div class="sl-example-card">';
           if (ex.icon) h += '<span class="sl-ex-icon">' + ex.icon + '</span>';
           h += '<div>';
-          h += '<p class="sl-ex-en">' + (ex.english || '') + '</p>';
+          h += '<p class="sl-ex-en">' + escAllow(ex.english || '') + '</p>';
           var exRu = ex.russian || ex.textRu;
-          if (exRu) h += '<p class="sl-ex-ru">' + exRu + '</p>';
+          if (exRu) h += '<p class="sl-ex-ru">' + escAllow(exRu) + '</p>';
           h += '</div></div>';
         });
         h += '</div>';
@@ -293,8 +293,8 @@ function renderSlide(s) {
         s.rows.forEach(function (row) {
           h += '<div class="sl-rule-row">';
           h += '<span class="sl-rule-subj">' + row.subject + '</span>';
-          h += '<span class="sl-rule-verb">' + esc(row.verb) + '</span>';
-          if (row.example) h += '<span class="sl-rule-ex">' + esc(row.example) + '</span>';
+          h += '<span class="sl-rule-verb">' + escAllow(row.verb) + '</span>';
+          if (row.example) h += '<span class="sl-rule-ex">' + escAllow(row.example) + '</span>';
           h += '</div>';
         });
         h += '</div>';
@@ -304,9 +304,9 @@ function renderSlide(s) {
         h += '<div class="sl-rule-table">';
         s.rules.forEach(function (r) {
           h += '<div class="sl-rule-row" style="flex-direction:column;gap:0.15rem;">';
-          h += '<span style="font-weight:700;font-size:0.9rem;">' + esc(r.rule) + '</span>';
-          if (r.ruleRu) h += '<span class="sl-ru" style="margin:0;">' + esc(r.ruleRu) + '</span>';
-          if (r.example) h += '<span class="sl-rule-ex" style="font-style:italic;">' + esc(r.example) + '</span>';
+          h += '<span style="font-weight:700;font-size:0.9rem;">' + escAllow(r.rule) + '</span>';
+          if (r.ruleRu) h += '<span class="sl-ru" style="margin:0;">' + escAllow(r.ruleRu) + '</span>';
+          if (r.example) h += '<span class="sl-rule-ex" style="font-style:italic;">' + escAllow(r.example) + '</span>';
           h += '</div>';
         });
         h += '</div>';
@@ -326,8 +326,8 @@ function renderSlide(s) {
         h += '<div class="sl-sent">';
         if (item.icon) h += '<span class="sl-sent-icon">' + item.icon + '</span>';
         h += '<div>';
-        h += '<p class="sl-sent-en">' + esc(item.english) + '</p>';
-        h += '<p class="sl-sent-ru">' + esc(item.russian) + '</p>';
+        h += '<p class="sl-sent-en">' + escAllow(item.english) + '</p>';
+        h += '<p class="sl-sent-ru">' + escAllow(item.russian) + '</p>';
         h += '</div></div>';
       });
       h += '</div></div>';
@@ -344,9 +344,9 @@ function renderSlide(s) {
       s.items.forEach(function (item) {
         h += '<div class="sl-vocab-card">';
         if (item.icon) h += '<span class="sl-vocab-icon">' + item.icon + '</span>';
-        h += '<strong>' + esc(item.english) + '</strong>';
+        h += '<strong>' + escAllow(item.english) + '</strong>';
         if (item.pronunciation) h += '<span class="sl-pron">' + item.pronunciation + '</span>';
-        h += '<span class="sl-vocab-ru">' + esc(item.russian) + '</span>';
+        h += '<span class="sl-vocab-ru">' + escAllow(item.russian) + '</span>';
         if (item.note) h += '<span class="sl-vocab-note">' + item.note + '</span>';
         h += '</div>';
       });
@@ -362,9 +362,9 @@ function renderSlide(s) {
       h += '<div class="sl-table">';
       s.rows.forEach(function (row) {
         h += '<div class="sl-table-row">';
-        h += '<div class="sl-table-en">' + esc(row.english) + '</div>';
+        h += '<div class="sl-table-en">' + escAllow(row.english) + '</div>';
         if (row.pronunciation) h += '<div class="sl-table-pron">' + row.pronunciation + '</div>';
-        h += '<div class="sl-table-ru">' + esc(row.russian) + '</div>';
+        h += '<div class="sl-table-ru">' + escAllow(row.russian) + '</div>';
         if (row.note) h += '<div class="sl-table-note">' + row.note + '</div>';
         h += '</div>';
       });
@@ -382,7 +382,7 @@ function renderSlide(s) {
         h += '<div class="sl-chat-line ' + cls + '">';
         h += '<span class="sl-chat-speaker">' + line.speaker + '</span>';
         h += '<div class="sl-chat-bubble">';
-        h += '<p>' + esc(line.text) + '</p>';
+        h += '<p>' + escAllow(line.text) + '</p>';
         if (line.pronunciation) h += '<p class="sl-pron">' + line.pronunciation + '</p>';
         var lineRu = line.russian || line.textRu;
         if (lineRu) h += '<p class="sl-ru">' + lineRu + '</p>';
@@ -404,8 +404,8 @@ function renderSlide(s) {
         h += '<div class="sl-tip-items">';
         s.items.forEach(function (item) {
           h += '<div class="sl-tip-item">';
-          h += '<span class="sl-tip-wrong">❌ ' + esc(item.wrong) + '</span>';
-          h += '<span class="sl-tip-right">✅ ' + esc(item.right) + '</span>';
+          h += '<span class="sl-tip-wrong">❌ ' + escAllow(item.wrong) + '</span>';
+          h += '<span class="sl-tip-right">✅ ' + escAllow(item.right) + '</span>';
           h += '</div>';
         });
         h += '</div>';
@@ -428,7 +428,7 @@ function renderSlide(s) {
         if (f.formula) h += '<div class="sl-form-formula">' + f.formula + '</div>';
         h += '<div class="sl-form-examples">';
         var exArr = f.examples || (f.example ? [f.example] : []);
-        exArr.forEach(function (ex) { h += '<p class="sl-form-ex">' + esc(ex) + '</p>'; });
+        exArr.forEach(function (ex) { h += '<p class="sl-form-ex">' + escAllow(ex) + '</p>'; });
         h += '</div></div>';
       });
       h += '</div></div>';
@@ -472,12 +472,12 @@ function renderSlide(s) {
       h += '<div class="sl-comp-col sl-comp-left">';
       h += '<h4>' + (s.left.title || s.left.label || '') + '</h4>';
       if (s.left.titleRu || s.left.labelRu) h += '<p class="sl-ru">' + (s.left.titleRu || s.left.labelRu) + '</p>';
-      (s.left.examples || s.left.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
+      (s.left.examples || s.left.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + escAllow(ex) + '</p>'; });
       h += '</div>';
       h += '<div class="sl-comp-col sl-comp-right">';
       h += '<h4>' + (s.right.title || s.right.label || '') + '</h4>';
       if (s.right.titleRu || s.right.labelRu) h += '<p class="sl-ru">' + (s.right.titleRu || s.right.labelRu) + '</p>';
-      (s.right.examples || s.right.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + esc(ex) + '</p>'; });
+      (s.right.examples || s.right.items || []).forEach(function (ex) { h += '<p class="sl-comp-ex">' + escAllow(ex) + '</p>'; });
       h += '</div></div></div>';
       break;
 
@@ -503,7 +503,7 @@ function renderSlide(s) {
       if (s.title) h += '<h3>' + s.title + '</h3>';
       if (s.titleRu) h += '<p class="sl-ru">' + s.titleRu + '</p>';
       var parts = s.sentence.split('___');
-      h += '<p class="sl-fg-sentence">' + esc(parts[0]) + '<span class="sl-fg-blank" data-id="' + fgId + '">___</span>' + esc(parts[1] || '') + '</p>';
+      h += '<p class="sl-fg-sentence">' + escAllow(parts[0]) + '<span class="sl-fg-blank" data-id="' + fgId + '">___</span>' + escAllow(parts[1] || '') + '</p>';
       h += '<div class="sl-fg-options">';
       s.options.forEach(function (opt) {
         h += '<button class="sl-fg-btn" data-answer="' + esc(opt) + '" data-correct="' + esc(s.answer) + '" data-id="' + fgId + '">' + esc(opt) + '</button>';
@@ -630,4 +630,20 @@ function renderSlide(s) {
 function esc(str) {
   if (!str) return '';
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function escAllow(str) {
+  if (!str) return '';
+  var safe = esc(str);
+  return safe
+    .replace(/&lt;b&gt;/g, '<b>')
+    .replace(/&lt;\/b&gt;/g, '</b>')
+    .replace(/&lt;strong&gt;/g, '<strong>')
+    .replace(/&lt;\/strong&gt;/g, '</strong>')
+    .replace(/&lt;i&gt;/g, '<i>')
+    .replace(/&lt;\/i&gt;/g, '</i>')
+    .replace(/&lt;em&gt;/g, '<em>')
+    .replace(/&lt;\/em&gt;/g, '</em>')
+    .replace(/&lt;s&gt;/g, '<s>')
+    .replace(/&lt;\/s&gt;/g, '</s>');
 }
