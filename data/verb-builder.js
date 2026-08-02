@@ -146,4 +146,49 @@ window.VERB_BUILDER = {
       },
     ],
   },
+  'past-continuous': {
+    id: 'past-continuous',
+    title: 'Past Continuous',
+    icon: '⏮️',
+    description: 'I was playing, she was eating, they were running...',
+    subjects: ['I', 'You', 'He', 'She', 'It', 'We', 'They'],
+    verbs: [
+      { base: 'play', ing: 'playing', visual: '⚽', russian: 'играть',
+        forms: { 'I': 'was playing', 'You': 'were playing', 'He': 'was playing', 'She': 'was playing', 'It': 'was playing', 'We': 'were playing', 'They': 'were playing' }
+      },
+      { base: 'eat', ing: 'eating', visual: '🍽️', russian: 'есть/кушать',
+        forms: { 'I': 'was eating', 'You': 'were eating', 'He': 'was eating', 'She': 'was eating', 'It': 'was eating', 'We': 'were eating', 'They': 'were eating' }
+      },
+      { base: 'read', ing: 'reading', visual: '📖', russian: 'читать',
+        forms: { 'I': 'was reading', 'You': 'were reading', 'He': 'was reading', 'She': 'was reading', 'It': 'was reading', 'We': 'were reading', 'They': 'were reading' }
+      },
+      { base: 'cook', ing: 'cooking', visual: '👨‍🍳', russian: 'готовить',
+        forms: { 'I': 'was cooking', 'You': 'were cooking', 'He': 'was cooking', 'She': 'was cooking', 'It': 'was cooking', 'We': 'were cooking', 'They': 'were cooking' }
+      },
+      { base: 'run', ing: 'running', visual: '🏃', russian: 'бегать',
+        forms: { 'I': 'was running', 'You': 'were running', 'He': 'was running', 'She': 'was running', 'It': 'was running', 'We': 'were running', 'They': 'were running' }
+      },
+      { base: 'sleep', ing: 'sleeping', visual: '😴', russian: 'спать',
+        forms: { 'I': 'was sleeping', 'You': 'were sleeping', 'He': 'was sleeping', 'She': 'was sleeping', 'It': 'was sleeping', 'We': 'were sleeping', 'They': 'were sleeping' }
+      },
+      { base: 'drink', ing: 'drinking', visual: '🥤', russian: 'пить',
+        forms: { 'I': 'was drinking', 'You': 'were drinking', 'He': 'was drinking', 'She': 'was drinking', 'It': 'was drinking', 'We': 'were drinking', 'They': 'were drinking' }
+      },
+      { base: 'drive', ing: 'driving', visual: '🚗', russian: 'водить',
+        forms: { 'I': 'was driving', 'You': 'were driving', 'He': 'was driving', 'She': 'was driving', 'It': 'was driving', 'We': 'were driving', 'They': 'were driving' }
+      },
+      { base: 'write', ing: 'writing', visual: '✍️', russian: 'писать',
+        forms: { 'I': 'was writing', 'You': 'were writing', 'He': 'was writing', 'She': 'was writing', 'It': 'was writing', 'We': 'were writing', 'They': 'were writing' }
+      },
+      { base: 'swim', ing: 'swimming', visual: '🏊', russian: 'плавать',
+        forms: { 'I': 'was swimming', 'You': 'were swimming', 'He': 'was swimming', 'She': 'was swimming', 'It': 'was swimming', 'We': 'were swimming', 'They': 'were swimming' }
+      },
+      { base: 'sing', ing: 'singing', visual: '🎤', russian: 'петь',
+        forms: { 'I': 'was singing', 'You': 'were singing', 'He': 'was singing', 'She': 'was singing', 'It': 'was singing', 'We': 'were singing', 'They': 'were singing' }
+      },
+      { base: 'dance', ing: 'dancing', visual: '💃', russian: 'танцевать',
+        forms: { 'I': 'was dancing', 'You': 'were dancing', 'He': 'was dancing', 'She': 'was dancing', 'It': 'was dancing', 'We': 'were dancing', 'They': 'were dancing' }
+      },
+    ],
+  },
 };

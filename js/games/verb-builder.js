@@ -44,7 +44,7 @@ function vbPlay(container, tense) {
       correctForm = isNegative ? verb.neg[subj] : verb.forms[subj];
     } else if (tense.id === 'past-simple') {
       correctForm = verb.past;
-    } else if (tense.id === 'present-continuous') {
+    } else if (tense.id === 'present-continuous' || tense.id === 'past-continuous') {
       correctForm = verb.forms[subj];
     }
 
@@ -70,6 +70,12 @@ function vbPlay(container, tense) {
         opts.push(be + ' ' + verb.ing);
         opts.push((be === 'am' ? 'is' : 'am') + ' ' + verb.ing);
         opts.push(be + ' ' + verb.base);
+        opts.push(verb.ing);
+      } else if (tense.id === 'past-continuous') {
+        var wasWere = (['I','He','She','It'].indexOf(subj) >= 0) ? 'was' : 'were';
+        opts.push(wasWere + ' ' + verb.ing);
+        opts.push((wasWere === 'was' ? 'were' : 'was') + ' ' + verb.ing);
+        opts.push(wasWere + ' ' + verb.base);
         opts.push(verb.ing);
       }
       // deduplicate
@@ -125,7 +131,7 @@ function vbPlay(container, tense) {
               // recalculate correct form for chosen subject
               if (tense.id === 'present-simple') {
                 correctForm = isNegative ? verb.neg[s] : verb.forms[s];
-              } else if (tense.id === 'present-continuous') {
+              } else if (tense.id === 'present-continuous' || tense.id === 'past-continuous') {
                 correctForm = verb.forms[s];
               }
               subj = s;
