@@ -261,3 +261,47 @@
 .sw-spin-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 .sw-land { font-size: 1rem; color: var(--muted); min-height: 1.5rem; margin-bottom: 0.5rem; }
 .sw-rounds { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+
+/* ──────── VERB BUILDER ──────── */
+.vb-sentence {
+  font-size: 1.3rem; font-weight: 700;
+  margin: 0.75rem 0; min-height: 2rem;
+  letter-spacing: 0.02em;
+}
+.vb-blank {
+  display: inline-block; padding: 0.15rem 0.75rem;
+  background: #e0e7ff; color: var(--primary);
+  border-radius: 8px; border: 2px dashed var(--primary);
+}
+.vb-filled {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  background: #d1fae5; color: #065f46;
+  border-radius: 8px;
+}
+.vb-wrong-text {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  background: #fee2e2; color: #991b1b;
+  border-radius: 8px; text-decoration: line-through;
+}
+.vb-base { color: var(--muted); font-style: italic; }
+.vb-options {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; max-width: 400px; margin: 0 auto;
+}
+.vb-opt-btn {
+  padding: 0.6rem 1.2rem; border-radius: 10px;
+  border: 2px solid #e2e8f0; background: white;
+  font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.15s; min-width: 80px;
+}
+.vb-opt-btn:hover:not(:disabled) {
+  border-color: var(--primary); background: #eef2ff;
+}
+.vb-opt-btn:disabled { cursor: default; }
+.vb-opt-btn.vb-correct {
+  border-color: #10b981; background: #d1fae5; color: #065f46;
+}
+.vb-opt-btn.vb-wrong {
+  border-color: #ef4444; background: #fee2e2; color: #991b1b;
+}
