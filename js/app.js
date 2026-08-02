@@ -49,15 +49,26 @@
 
   function renderHome() {
     gameGrid.innerHTML = '';
-    window.GAMES.forEach(function (game) {
-      var card = document.createElement('div');
-      card.className = 'game-card';
-      card.innerHTML =
-        '<div class="icon">' + game.icon + '</div>' +
-        '<h3>' + game.title + '</h3>' +
-        '<p>' + game.description + '</p>';
-      card.addEventListener('click', function () { openGame(game); });
-      gameGrid.appendChild(card);
+    var sections = [
+      { key: 'classic', label: '🎯 Classic Games', games: window.GAMES.filter(function(g) { return !g.section || g.section === 'classic'; }) },
+      { key: 'arcade',  label: '🕹️ Arcade Games',  games: window.GAMES.filter(function(g) { return g.section === 'arcade'; }) },
+    ];
+    sections.forEach(function(section) {
+      if (!section.games.length) return;
+      var header = document.createElement('div');
+      header.className = 'game-section-header';
+      header.textContent = section.label;
+      gameGrid.appendChild(header);
+      section.games.forEach(function(game) {
+        var card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML =
+          '<div class="icon">' + game.icon + '</div>' +
+          '<h3>' + game.title + '</h3>' +
+          '<p>' + game.description + '</p>';
+        card.addEventListener('click', function() { openGame(game); });
+        gameGrid.appendChild(card);
+      });
     });
   }
 
