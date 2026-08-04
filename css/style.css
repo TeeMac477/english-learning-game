@@ -76,6 +76,39 @@ main {
 
 .hidden { display: none !important; }
 
+/* ──────── LOAD ERROR OVERLAY ──────── */
+.load-error {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+.load-error p {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0;
+}
+.load-error button {
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: var(--shadow);
+}
+.load-error button:active { transform: scale(0.97); }
+
 /* ──────── HOME GRID ──────── */
 .game-grid {
   display: grid;

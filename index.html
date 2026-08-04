@@ -27,13 +27,34 @@
       </section>
     </section>
 
+    <div id="load-error" class="load-error hidden">
+      <p>⚠️ Something didn't load properly.</p>
+      <button id="load-error-retry" onclick="location.reload()">Tap to reload</button>
+    </div>
+
     <section id="game-screen" class="screen hidden">
       <button id="back-btn" class="back-btn">← Back to games</button>
       <div id="game-container"></div>
     </section>
   </main>
 
-  <script>window.GAMES = [];</script>
+  <script>
+    window.GAMES = [];
+    window.__appInitialized = false;
+    window.__showLoadError = function () {
+      var el = document.getElementById('load-error');
+      if (el) el.classList.remove('hidden');
+    };
+    window.addEventListener('error', function () {
+      if (!window.__appInitialized) window.__showLoadError();
+    });
+    // Fallback: if nothing has initialized within a few seconds
+    // (e.g. a script failed to load without throwing a JS error),
+    // show a retry prompt instead of leaving the page blank.
+    setTimeout(function () {
+      if (!window.__appInitialized) window.__showLoadError();
+    }, 4000);
+  </script>
   <!-- Data files -->
   <script src="data/vocabulary.js?v=4"></script>
   <script src="data/prepositions.js"></script>
@@ -64,6 +85,6 @@
   <script src="data/verb-builder.js"></script>
   <script src="js/games/verb-builder.js"></script>
   <!-- App init -->
-  <script src="js/app.js?v=4"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>
