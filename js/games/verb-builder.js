@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🏗️',
   title: 'Verb Builder',
   description: 'See an action, pick the subject & correct verb form — build full sentences!',
-  section: 'arcade',
+  category: 'grammar',
   render: function(container) { vbHome(container); },
 });
 

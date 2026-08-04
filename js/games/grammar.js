@@ -3,6 +3,7 @@ window.GAMES.push({
   icon: '✍️',
   title: 'Grammar Lessons',
   description: 'Learn verbs → practise grammar → build sentences',
+  category: 'grammar',
   render(container) {
     renderGrammarHome(container);
   },

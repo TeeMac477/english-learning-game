@@ -3,6 +3,7 @@ window.GAMES.push({
   icon: '📍',
   title: 'Prepositions',
   description: 'Time, place and movement — 9 rounds',
+  category: 'grammar',
   render(container) {
     renderCategories(container);
   },

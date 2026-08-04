@@ -3,6 +3,7 @@ window.GAMES.push({
   icon: '🧩',
   title: 'Sentence Builder',
   description: 'Rearrange words to build correct sentences',
+  category: 'sentence',
   render(container) {
     renderSentenceHome(container);
   },

@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '✏️',
   title: 'Fill the Gap',
   description: 'Complete sentences with the right word — grammar practice from the lessons',
-  section: 'arcade',
+  category: 'grammar',
   render: function(container) { fgPlay(container); },
 });
 

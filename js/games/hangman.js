@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🪢',
   title: 'Hangman',
   description: 'Guess letters to spell out English words — wrong guesses draw the hangman!',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { hmHome(container); },
 });
 

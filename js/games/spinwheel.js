@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🎡',
   title: 'Spin the Wheel',
   description: 'Spin the wheel to land on a random vocabulary topic — then answer 5 quick questions',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { swRender(container); },
 });
 

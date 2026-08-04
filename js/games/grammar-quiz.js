@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '📐',
   title: 'Grammar Practice',
   description: 'Dedicated quizzes for every grammar topic — to be, some/any, articles & more',
-  section: 'arcade',
+  category: 'grammar',
   render: function(container) { gqHome(container); },
 });
 

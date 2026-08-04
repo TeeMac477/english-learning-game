@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '⌨️',
   title: 'Type It',
   description: 'See the Russian word and type the English translation — spelling counts!',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { tiHome(container); },
 });
 

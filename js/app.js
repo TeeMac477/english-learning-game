@@ -52,14 +52,16 @@
     function renderHome() {
       gameGrid.innerHTML = '';
       var sections = [
-        { key: 'classic', label: '🎯 Classic Games', games: window.GAMES.filter(function(g) { return !g.section || g.section === 'classic'; }) },
-        { key: 'arcade',  label: '🕹️ Arcade Games',  games: window.GAMES.filter(function(g) { return g.section === 'arcade'; }) },
+        { key: 'vocabulary', label: '🔤 Vocabulary Games', sub: 'Learn and drill words by topic', games: window.GAMES.filter(function(g) { return g.category === 'vocabulary'; }) },
+        { key: 'grammar',    label: '📐 Grammar Games',    sub: 'Practise tenses, structures & rules', games: window.GAMES.filter(function(g) { return g.category === 'grammar'; }) },
+        { key: 'sentence',   label: '✍️ Sentence Practice', sub: 'Put words together into full sentences', games: window.GAMES.filter(function(g) { return g.category === 'sentence'; }) },
+        { key: 'other',      label: '🎲 More Games',        sub: '', games: window.GAMES.filter(function(g) { return !g.category; }) },
       ];
       sections.forEach(function(section) {
         if (!section.games.length) return;
         var header = document.createElement('div');
         header.className = 'game-section-header';
-        header.textContent = section.label;
+        header.innerHTML = section.label + (section.sub ? '<span class="game-section-sub">' + section.sub + '</span>' : '');
         gameGrid.appendChild(header);
         section.games.forEach(function(game) {
           var card = document.createElement('div');

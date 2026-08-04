@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🧠',
   title: 'Memory Match',
   description: 'Flip cards to find matching English–Russian pairs — train your memory!',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { mmHome(container); },
 });
 

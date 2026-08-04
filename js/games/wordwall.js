@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🧱',
   title: 'Word Wall',
   description: 'Match English words with their Russian translations before time runs out',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { wwHome(container); },
 });
 

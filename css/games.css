@@ -1,16 +1,26 @@
 /* ──────── SECTION HEADERS ──────── */
 .game-section-header {
   grid-column: 1 / -1;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 1.5rem 0 0.25rem;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  padding: 1.5rem 0 0.5rem;
   border-bottom: 1.5px solid rgba(99,102,241,0.15);
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 .game-section-header:first-child { padding-top: 0.25rem; }
+.game-section-sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: normal;
+}
 
 /* ──────── WORD WALL ──────── */
 .ww-header {

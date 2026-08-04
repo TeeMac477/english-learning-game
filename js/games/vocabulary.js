@@ -3,6 +3,7 @@ window.GAMES.push({
   icon: '📖',
   title: 'Vocabulary',
   description: 'Learn words with pictures and Russian translations',
+  category: 'vocabulary',
   render(container) {
     renderVocabHome(container);
   },

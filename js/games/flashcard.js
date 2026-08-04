@@ -3,7 +3,7 @@ window.GAMES.push({
   icon: '🃏',
   title: 'Flashcard Sprint',
   description: 'Flip cards to reveal translations — sort into Know It and Try Again piles',
-  section: 'arcade',
+  category: 'vocabulary',
   render: function(container) { fcHome(container); },
 });
 
