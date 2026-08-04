@@ -27,6 +27,7 @@
         practiceSection.classList.remove('hidden');
         learnSection.classList.add('hidden');
         gameScreen.classList.add('hidden');
+        homeScreen.classList.remove('hidden');
         renderHome();
       }
     };
