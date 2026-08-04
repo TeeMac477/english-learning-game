@@ -22,13 +22,28 @@ function gqHome(container) {
       '<h3>' + topic.title + '</h3>' +
       '<p>' + topic.description + '</p>' +
       '<span class="tag tag-new">' + topic.questions.length + ' questions</span>';
-    card.addEventListener('click', function() { gqPlay(container, topic); });
+    card.addEventListener('click', function() { gqPickDifficulty(container, topic); });
     grid.appendChild(card);
   });
 }
 
-function gqPlay(container, topic) {
-  var questions = topic.questions.slice().sort(function() { return Math.random() - 0.5; });
+function gqPickDifficulty(container, topic) {
+  window.renderDifficultyPicker(
+    container,
+    topic.icon + ' ' + topic.title,
+    'Choose how many questions to answer.',
+    { quick: Math.min(8, topic.questions.length), regular: Math.min(12, topic.questions.length), hard: topic.questions.length },
+    'questions',
+    function(level, count) { gqPlay(container, topic, level, count); },
+    function() { gqHome(container); }
+  );
+}
+
+// level/count are optional so lesson "Play Grammar Quiz" deep-links
+// (which call gqPlay(container, topic) directly) keep working unchanged.
+function gqPlay(container, topic, level, count) {
+  var pool = topic.questions;
+  var questions = level ? window.pickForDifficulty(pool, level, count, function(q) { return q.sentence.length; }) : pool.slice().sort(function() { return Math.random() - 0.5; });
   var idx = 0;
   var score = 0;
   var answered = false;
@@ -115,7 +130,7 @@ function gqPlay(container, topic) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { gqHome(container); });
-    container.querySelector('#gq-again').addEventListener('click', function() { gqPlay(container, topic); });
+    container.querySelector('#gq-again').addEventListener('click', function() { gqPlay(container, topic, level, count); });
     container.querySelector('#gq-back').addEventListener('click', function() { gqHome(container); });
   }
 

@@ -1,3 +1,39 @@
+/* ──────── DIFFICULTY PICKER ──────── */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.diff-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.diff-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.diff-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.diff-card h3 { margin: 0 0 0.25rem; font-size: 1rem; color: var(--text); }
+.diff-card p { margin: 0 0 0.5rem; font-size: 0.78rem; color: var(--muted); }
+.diff-count {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+.diff-card.diff-quick:hover { border-color: #22c55e; }
+.diff-card.diff-regular:hover { border-color: var(--primary); }
+.diff-card.diff-hard:hover { border-color: #ef4444; }
+.diff-card.diff-hard .diff-count { background: var(--error-light); color: var(--error); }
+
 /* ──────── SECTION HEADERS ──────── */
 .game-section-header {
   grid-column: 1 / -1;
@@ -271,6 +307,19 @@
 .sw-spin-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 .sw-land { font-size: 1rem; color: var(--muted); min-height: 1.5rem; margin-bottom: 0.5rem; }
 .sw-rounds { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+.sw-level-row {
+  display: flex; gap: 0.5rem; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 1rem;
+}
+.sw-level-btn {
+  padding: 0.4rem 0.8rem; border-radius: 999px;
+  border: 2px solid #e2e8f0; background: white;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  font-family: inherit; color: var(--muted);
+}
+.sw-level-btn.active {
+  border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark);
+}
 
 /* ──────── VERB BUILDER ──────── */
 .vb-sentence {

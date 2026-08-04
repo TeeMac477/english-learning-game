@@ -23,14 +23,27 @@ function fcHome(container) {
       '<h3>' + cat.title + '</h3>' +
       '<p>' + cat.description + '</p>' +
       '<span class="tag tag-new">' + qs.length + ' cards</span>';
-    card.addEventListener('click', function() { fcPlay(container, cat); });
+    card.addEventListener('click', function() { fcPickDifficulty(container, cat); });
     grid.appendChild(card);
   });
 }
 
-function fcPlay(container, cat) {
+function fcPickDifficulty(container, cat) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  var deck = allQs.slice().sort(function() { return Math.random() - 0.5; });
+  window.renderDifficultyPicker(
+    container,
+    cat.icon + ' ' + cat.title,
+    'Choose how many cards to go through.',
+    { quick: 8, regular: 14, hard: Math.min(25, allQs.length) },
+    'cards',
+    function(level, count) { fcPlay(container, cat, level, count); },
+    function() { fcHome(container); }
+  );
+}
+
+function fcPlay(container, cat, level, count) {
+  var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
+  var deck = window.pickForDifficulty(allQs, level, count);
   var known = 0;
   var total = deck.length;
   var flipped = false;
@@ -125,7 +138,7 @@ function fcPlay(container, cat) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { fcHome(container); });
-    container.querySelector('#fc-again').addEventListener('click', function() { fcPlay(container, cat); });
+    container.querySelector('#fc-again').addEventListener('click', function() { fcPlay(container, cat, level, count); });
     container.querySelector('#fc-back').addEventListener('click', function() { fcHome(container); });
   }
 

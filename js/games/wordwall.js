@@ -24,15 +24,26 @@ function wwHome(container) {
       '<h3>' + cat.title + '</h3>' +
       '<p>' + cat.description + '</p>' +
       '<span class="tag tag-new">' + qs.length + ' pairs</span>';
-    card.addEventListener('click', function() { wwPlay(container, cat); });
+    card.addEventListener('click', function() { wwPickDifficulty(container, cat); });
     grid.appendChild(card);
   });
 }
 
-function wwPlay(container, cat) {
+function wwPickDifficulty(container, cat) {
+  window.renderDifficultyPicker(
+    container,
+    cat.icon + ' ' + cat.title,
+    'Choose how many pairs to match.',
+    { quick: 5, regular: 8, hard: 12 },
+    'pairs',
+    function(level, count) { wwPlay(container, cat, level, count); },
+    function() { wwHome(container); }
+  );
+}
+
+function wwPlay(container, cat, level, count) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  // pick up to 8 pairs, shuffled
-  var pool = allQs.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 8);
+  var pool = window.pickForDifficulty(allQs, level, count);
   var pairs = pool.map(function(q) { return { english: q.english, russian: q.russian }; });
 
   var errors = 0;
@@ -165,7 +176,7 @@ function wwPlay(container, cat) {
         '<br><button class="mode-btn" style="margin-top:0.75rem" id="ww-play-again">Play again ↺</button>' +
         ' <button class="ghost-btn" style="margin-top:0.75rem" id="ww-back">← Topics</button>';
       container.querySelector('.ww-grid').insertAdjacentElement('beforebegin', div);
-      div.querySelector('#ww-play-again').addEventListener('click', function() { wwPlay(container, cat); });
+      div.querySelector('#ww-play-again').addEventListener('click', function() { wwPlay(container, cat, level, count); });
       div.querySelector('#ww-back').addEventListener('click', function() { wwHome(container); });
     }
   }

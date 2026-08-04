@@ -144,6 +144,18 @@ window.VERB_BUILDER = {
       { base: 'dance', ing: 'dancing', visual: '💃', russian: 'танцевать',
         forms: { 'I': 'am dancing', 'You': 'are dancing', 'He': 'is dancing', 'She': 'is dancing', 'It': 'is dancing', 'We': 'are dancing', 'They': 'are dancing' }
       },
+      { base: 'work', ing: 'working', visual: '💼', russian: 'работать',
+        forms: { 'I': 'am working', 'You': 'are working', 'He': 'is working', 'She': 'is working', 'It': 'is working', 'We': 'are working', 'They': 'are working' }
+      },
+      { base: 'study', ing: 'studying', visual: '📚', russian: 'учиться',
+        forms: { 'I': 'am studying', 'You': 'are studying', 'He': 'is studying', 'She': 'is studying', 'It': 'is studying', 'We': 'are studying', 'They': 'are studying' }
+      },
+      { base: 'walk', ing: 'walking', visual: '🚶', russian: 'гулять',
+        forms: { 'I': 'am walking', 'You': 'are walking', 'He': 'is walking', 'She': 'is walking', 'It': 'is walking', 'We': 'are walking', 'They': 'are walking' }
+      },
+      { base: 'watch', ing: 'watching', visual: '📺', russian: 'смотреть',
+        forms: { 'I': 'am watching', 'You': 'are watching', 'He': 'is watching', 'She': 'is watching', 'It': 'is watching', 'We': 'are watching', 'They': 'are watching' }
+      },
     ],
   },
   'past-continuous': {
@@ -188,6 +200,18 @@ window.VERB_BUILDER = {
       },
       { base: 'dance', ing: 'dancing', visual: '💃', russian: 'танцевать',
         forms: { 'I': 'was dancing', 'You': 'were dancing', 'He': 'was dancing', 'She': 'was dancing', 'It': 'was dancing', 'We': 'were dancing', 'They': 'were dancing' }
+      },
+      { base: 'work', ing: 'working', visual: '💼', russian: 'работать',
+        forms: { 'I': 'was working', 'You': 'were working', 'He': 'was working', 'She': 'was working', 'It': 'was working', 'We': 'were working', 'They': 'were working' }
+      },
+      { base: 'study', ing: 'studying', visual: '📚', russian: 'учиться',
+        forms: { 'I': 'was studying', 'You': 'were studying', 'He': 'was studying', 'She': 'was studying', 'It': 'was studying', 'We': 'were studying', 'They': 'were studying' }
+      },
+      { base: 'walk', ing: 'walking', visual: '🚶', russian: 'гулять',
+        forms: { 'I': 'was walking', 'You': 'were walking', 'He': 'was walking', 'She': 'was walking', 'It': 'was walking', 'We': 'were walking', 'They': 'were walking' }
+      },
+      { base: 'watch', ing: 'watching', visual: '📺', russian: 'смотреть',
+        forms: { 'I': 'was watching', 'You': 'were watching', 'He': 'was watching', 'She': 'was watching', 'It': 'was watching', 'We': 'were watching', 'They': 'were watching' }
       },
     ],
   },

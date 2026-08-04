@@ -24,9 +24,22 @@ function hmHome(container) {
       '<h3>' + cat.title + '</h3>' +
       '<p>' + cat.description + '</p>' +
       '<span class="tag tag-new">' + qs.length + ' words</span>';
-    card.addEventListener('click', function() { hmPlay(container, cat); });
+    card.addEventListener('click', function() { hmPickDifficulty(container, cat); });
     grid.appendChild(card);
   });
+}
+
+function hmPickDifficulty(container, cat) {
+  var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
+  window.renderDifficultyPicker(
+    container,
+    cat.icon + ' ' + cat.title,
+    'Choose how many words to guess. Hard mode gives fewer wrong guesses!',
+    { quick: 5, regular: 10, hard: Math.min(15, allQs.length) },
+    'words',
+    function(level, count) { hmPlay(container, cat, level, count); },
+    function() { hmHome(container); }
+  );
 }
 
 function hmDrawSvg(wrong) {
@@ -50,12 +63,12 @@ function hmDrawSvg(wrong) {
   return svg;
 }
 
-function hmPlay(container, cat) {
+function hmPlay(container, cat, level, count) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  var pool = allQs.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 10);
+  var pool = window.pickForDifficulty(allQs, level, count);
   var wordIdx = 0;
   var score = 0;
-  var MAX_WRONG = 10;
+  var MAX_WRONG = level === 'hard' ? 7 : level === 'quick' ? 12 : 10;
 
   function playWord() {
     if (wordIdx >= pool.length) { showResults(); return; }
@@ -189,7 +202,7 @@ function hmPlay(container, cat) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { hmHome(container); });
-    container.querySelector('#hm-again').addEventListener('click', function() { hmPlay(container, cat); });
+    container.querySelector('#hm-again').addEventListener('click', function() { hmPlay(container, cat, level, count); });
     container.querySelector('#hm-back').addEventListener('click', function() { hmHome(container); });
   }
 

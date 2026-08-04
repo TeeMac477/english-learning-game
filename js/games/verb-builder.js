@@ -22,13 +22,28 @@ function vbHome(container) {
       '<h3>' + tense.title + '</h3>' +
       '<p>' + tense.description + '</p>' +
       '<span class="tag tag-new">' + tense.verbs.length + ' verbs</span>';
-    card.addEventListener('click', function() { vbPlay(container, tense); });
+    card.addEventListener('click', function() { vbPickDifficulty(container, tense); });
     grid.appendChild(card);
   });
 }
 
-function vbPlay(container, tense) {
-  var verbs = tense.verbs.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 10);
+function vbPickDifficulty(container, tense) {
+  window.renderDifficultyPicker(
+    container,
+    tense.icon + ' ' + tense.title,
+    'Choose how many verbs to practise.',
+    { quick: Math.min(6, tense.verbs.length), regular: Math.min(10, tense.verbs.length), hard: tense.verbs.length },
+    'verbs',
+    function(level, count) { vbPlay(container, tense, level, count); },
+    function() { vbHome(container); }
+  );
+}
+
+// level/count are optional so lesson "Play Verb Builder" deep-links
+// (which call vbPlay(container, tense) directly) keep working unchanged.
+function vbPlay(container, tense, level, count) {
+  var pool = tense.verbs;
+  var verbs = level ? window.pickForDifficulty(pool, level, count, function(v) { return v.base.length; }) : pool.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 10);
   var idx = 0;
   var score = 0;
 
@@ -199,7 +214,7 @@ function vbPlay(container, tense) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { vbHome(container); });
-    container.querySelector('#vb-again').addEventListener('click', function() { vbPlay(container, tense); });
+    container.querySelector('#vb-again').addEventListener('click', function() { vbPlay(container, tense, level, count); });
     container.querySelector('#vb-back').addEventListener('click', function() { vbHome(container); });
   }
 

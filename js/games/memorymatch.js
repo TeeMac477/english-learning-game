@@ -24,14 +24,27 @@ function mmHome(container) {
       '<h3>' + cat.title + '</h3>' +
       '<p>' + cat.description + '</p>' +
       '<span class="tag tag-new">' + qs.length + ' words</span>';
-    card.addEventListener('click', function() { mmPlay(container, cat); });
+    card.addEventListener('click', function() { mmPickDifficulty(container, cat); });
     grid.appendChild(card);
   });
 }
 
-function mmPlay(container, cat) {
+function mmPickDifficulty(container, cat) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  var pool = allQs.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 6);
+  window.renderDifficultyPicker(
+    container,
+    cat.icon + ' ' + cat.title,
+    'Choose how many pairs to remember.',
+    { quick: 4, regular: 6, hard: Math.min(9, allQs.length) },
+    'pairs',
+    function(level, count) { mmPlay(container, cat, level, count); },
+    function() { mmHome(container); }
+  );
+}
+
+function mmPlay(container, cat, level, count) {
+  var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
+  var pool = window.pickForDifficulty(allQs, level, count);
   var cards = [];
   pool.forEach(function(q) {
     cards.push({ id: q.english + '-en', pairId: q.english, text: q.english, visual: q.visual || '', type: 'en' });
@@ -134,7 +147,7 @@ function mmPlay(container, cat) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { mmHome(container); });
-    container.querySelector('#mm-again').addEventListener('click', function() { mmPlay(container, cat); });
+    container.querySelector('#mm-again').addEventListener('click', function() { mmPlay(container, cat, level, count); });
     container.querySelector('#mm-back').addEventListener('click', function() { mmHome(container); });
   }
 

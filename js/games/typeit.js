@@ -23,9 +23,22 @@ function tiHome(container) {
       '<h3>' + cat.title + '</h3>' +
       '<p>' + cat.description + '</p>' +
       '<span class="tag tag-new">' + qs.length + ' words</span>';
-    card.addEventListener('click', function() { tiPlay(container, cat); });
+    card.addEventListener('click', function() { tiPickDifficulty(container, cat); });
     grid.appendChild(card);
   });
+}
+
+function tiPickDifficulty(container, cat) {
+  var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
+  window.renderDifficultyPicker(
+    container,
+    cat.icon + ' ' + cat.title,
+    'Choose how many words to type.',
+    { quick: 6, regular: 10, hard: Math.min(18, allQs.length) },
+    'words',
+    function(level, count) { tiPlay(container, cat, level, count); },
+    function() { tiHome(container); }
+  );
 }
 
 function tiLevenshtein(a, b) {
@@ -40,9 +53,9 @@ function tiLevenshtein(a, b) {
   return dp[m][n];
 }
 
-function tiPlay(container, cat) {
+function tiPlay(container, cat, level, count) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  var questions = allQs.slice().sort(function() { return Math.random() - 0.5; });
+  var questions = window.pickForDifficulty(allQs, level, count);
   var idx = 0;
   var correct = 0;
   var answered = false;
@@ -128,7 +141,7 @@ function tiPlay(container, cat) {
         '</div>' +
       '</div>';
     container.querySelector('.back-inline').addEventListener('click', function() { tiHome(container); });
-    container.querySelector('#ti-again').addEventListener('click', function() { tiPlay(container, cat); });
+    container.querySelector('#ti-again').addEventListener('click', function() { tiPlay(container, cat, level, count); });
     container.querySelector('#ti-back').addEventListener('click', function() { tiHome(container); });
   }
 

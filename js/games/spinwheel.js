@@ -54,10 +54,13 @@ function swRender(container) {
   var segments = cats.slice(0, 12);
   var totalDeg = 0;
   var spinning = false;
+  var swCounts = { quick: 3, regular: 5, hard: 8 };
+  var selectedLevel = 'regular';
 
   container.innerHTML =
     '<h2 class="section-heading">🎡 Spin the Wheel</h2>' +
-    '<p class="section-sub" style="margin-bottom:1rem">Spin to get a random topic — then answer 5 questions!</p>' +
+    '<p class="section-sub" style="margin-bottom:0.5rem">Spin to get a random topic — then answer some questions!</p>' +
+    '<div class="sw-level-row" id="sw-level-row"></div>' +
     '<div class="sw-wrap">' +
       '<div class="sw-pointer"></div>' +
       '<div class="sw-wheel-outer">' +
@@ -67,6 +70,19 @@ function swRender(container) {
       '<div class="sw-rounds" id="sw-rounds"></div>' +
       '<button class="sw-spin-btn" id="sw-spin">Spin!</button>' +
     '</div>';
+
+  var levelRow = container.querySelector('#sw-level-row');
+  window.DIFFICULTY_LEVELS.forEach(function(lvl) {
+    var btn = document.createElement('button');
+    btn.className = 'sw-level-btn' + (lvl.id === selectedLevel ? ' active' : '');
+    btn.textContent = lvl.icon + ' ' + lvl.label + ' (' + swCounts[lvl.id] + ')';
+    btn.addEventListener('click', function() {
+      selectedLevel = lvl.id;
+      levelRow.querySelectorAll('.sw-level-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+    levelRow.appendChild(btn);
+  });
 
   var wheelEl = container.querySelector('#sw-wheel');
   var spinBtn = container.querySelector('#sw-spin');
@@ -97,20 +113,20 @@ function swRender(container) {
       spinning = false;
       var cat = segments[segIdx];
       landEl.innerHTML = cat.icon + ' <strong>' + cat.title + '</strong>';
-      roundsEl.textContent = 'Get ready for 5 questions!';
+      roundsEl.textContent = 'Get ready for ' + swCounts[selectedLevel] + ' questions!';
       spinBtn.disabled = false;
       spinBtn.textContent = 'Spin again';
       // auto-start quiz after short pause
       setTimeout(function() {
-        swRunQuiz(container, cat);
+        swRunQuiz(container, cat, selectedLevel, swCounts[selectedLevel]);
       }, 1200);
     }, 4100);
   });
 }
 
-function swRunQuiz(container, cat) {
+function swRunQuiz(container, cat, level, count) {
   var allQs = cat.rounds.flatMap(function(r) { return r.questions; });
-  var pool = allQs.slice().sort(function() { return Math.random() - 0.5; }).slice(0, 5);
+  var pool = window.pickForDifficulty(allQs, level, count || 5);
   var adapted = pool.map(function(q) {
     return {
       visual: q.visual,
