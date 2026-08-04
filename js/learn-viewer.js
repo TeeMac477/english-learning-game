@@ -100,7 +100,7 @@ function renderUnit(container, levelId, unit, onBack) {
 
     container.querySelectorAll('.practice-game-link').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (window.openGameById) window.openGameById(btn.dataset.game);
+        if (window.openGameById) window.openGameById(btn.dataset.game, btn.dataset.topic || '');
       });
     });
 
@@ -442,7 +442,7 @@ function renderSlide(s) {
       if (s.text) h += '<p>' + s.text + '</p>';
       if (s.textRu) h += '<p class="sl-ru">' + s.textRu + '</p>';
       if (s.gameId) {
-        h += '<button class="next-btn practice-game-link" data-game="' + s.gameId + '">';
+        h += '<button class="next-btn practice-game-link" data-game="' + s.gameId + '"' + (s.topic ? ' data-topic="' + s.topic + '"' : '') + '>';
         h += '🎮 ' + (s.buttonText || 'Play now');
         h += '</button>';
       }

@@ -350,4 +350,46 @@ window.GRAMMAR_TOPICS = {
     ],
   },
 
+  'comparatives': {
+    id: 'comparatives',
+    icon: '📏',
+    title: 'Comparatives & Superlatives',
+    description: 'bigger, the biggest, more beautiful...',
+    questions: [
+      { sentence: 'This car is ___ than mine.', options: ['fast', 'faster', 'fastest', 'more fast'], answer: 'faster' },
+      { sentence: 'She is the ___ student in the class.', options: ['good', 'better', 'best', 'goodest'], answer: 'best' },
+      { sentence: 'This book is ___ than that one.', options: ['interesting', 'more interesting', 'interestinger', 'most interesting'], answer: 'more interesting' },
+      { sentence: 'Everest is the ___ mountain in the world.', options: ['high', 'higher', 'highest', 'more high'], answer: 'highest' },
+      { sentence: 'My sister is ___ than me.', options: ['tall', 'taller', 'tallest', 'more tall'], answer: 'taller' },
+      { sentence: 'This is the ___ film I have ever seen.', options: ['bad', 'worse', 'worst', 'badder'], answer: 'worst' },
+      { sentence: 'A plane is ___ than a train.', options: ['fast', 'faster', 'fastest', 'more fast'], answer: 'faster' },
+      { sentence: 'This is the ___ restaurant in town.', options: ['cheap', 'cheaper', 'cheapest', 'more cheap'], answer: 'cheapest' },
+      { sentence: 'Today is ___ than yesterday.', options: ['hot', 'hotter', 'hottest', 'more hot'], answer: 'hotter' },
+      { sentence: 'This dress is ___ than that one.', options: ['beautiful', 'more beautiful', 'beautifuler', 'most beautiful'], answer: 'more beautiful' },
+      { sentence: 'He is the ___ boy in the family.', options: ['young', 'younger', 'youngest', 'more young'], answer: 'youngest' },
+      { sentence: 'This exercise is ___ than the last one.', options: ['easy', 'easier', 'easiest', 'more easy'], answer: 'easier' },
+    ],
+  },
+
+  'be-going-to': {
+    id: 'be-going-to',
+    icon: '🔮',
+    title: 'Be Going To',
+    description: 'Future plans: I am going to travel...',
+    questions: [
+      { sentence: 'I ___ going to visit my grandmother tomorrow.', options: ['am', 'is', 'are', 'be'], answer: 'am' },
+      { sentence: 'She ___ going to buy a new car.', options: ['am', 'is', 'are', 'be'], answer: 'is' },
+      { sentence: 'They ___ going to travel to Spain next year.', options: ['am', 'is', 'are', 'be'], answer: 'are' },
+      { sentence: 'We are going ___ have a party this weekend.', options: ['to', 'for', 'at', 'on'], answer: 'to' },
+      { sentence: 'He is not going ___ come to the meeting.', options: ['to', 'for', 'at', 'on'], answer: 'to' },
+      { sentence: '___ you going to study tonight?', options: ['Are', 'Is', 'Do', 'Does'], answer: 'Are' },
+      { sentence: 'I am not going to ___ TV tonight.', options: ['watch', 'watches', 'watching', 'watched'], answer: 'watch' },
+      { sentence: 'What ___ you going to do this weekend?', options: ['are', 'is', 'do', 'does'], answer: 'are' },
+      { sentence: 'She is going to ___ a new job soon.', options: ['start', 'starts', 'starting', 'started'], answer: 'start' },
+      { sentence: 'It ___ going to rain later.', options: ['am', 'is', 'are', 'be'], answer: 'is' },
+      { sentence: 'We ___ going to move to a new house.', options: ['am', 'is', 'are', 'be'], answer: 'are' },
+      { sentence: 'I am going to ___ my homework after dinner.', options: ['do', 'does', 'doing', 'did'], answer: 'do' },
+    ],
+  },
+
 };

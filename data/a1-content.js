@@ -87,7 +87,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice "to be" in games', textRu: 'Практика — глагол «to be»', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice "to be" in games', textRu: 'Практика — глагол «to be»', gameId: 'grammar-quiz', topic: 'to-be', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -154,7 +154,7 @@ window.A1_CONTENT = [
         answer: 'Those'
       },
 
-      { type: 'practice', text: 'Practice demonstratives', textRu: 'Практика — указательные местоимения', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice demonstratives', textRu: 'Практика — указательные местоимения', gameId: 'grammar-quiz', topic: 'demonstratives', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -365,7 +365,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice possessive adjectives', textRu: 'Практика — притяжательные', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice possessive adjectives', textRu: 'Практика — притяжательные', gameId: 'grammar-quiz', topic: 'possessives', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -444,7 +444,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice object pronouns', textRu: 'Практика — объектные местоимения', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice object pronouns', textRu: 'Практика — объектные местоимения', gameId: 'grammar-quiz', topic: 'object-pronouns', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -532,7 +532,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Present Simple', textRu: 'Практика — Present Simple', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Present Simple', textRu: 'Практика — Present Simple', gameId: 'verb-builder', topic: 'present-simple', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -599,7 +599,7 @@ window.A1_CONTENT = [
         answer: 'He is often tired.'
       },
 
-      { type: 'practice', text: 'Practice frequency adverbs', textRu: 'Практика — наречия частотности', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice frequency adverbs', textRu: 'Практика — наречия частотности', gameId: 'grammar-quiz', topic: 'frequency', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -748,7 +748,7 @@ window.A1_CONTENT = [
         answer: 'What'
       },
 
-      { type: 'practice', text: 'Practice question words', textRu: 'Практика — вопросительные слова', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice question words', textRu: 'Практика — вопросительные слова', gameId: 'grammar-quiz', topic: 'question-words', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -808,7 +808,7 @@ window.A1_CONTENT = [
         answer: 'Have'
       },
 
-      { type: 'practice', text: 'Practice Have Got', textRu: 'Практика — Have Got', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Have Got', textRu: 'Практика — Have Got', gameId: 'grammar-quiz', topic: 'have-got', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -880,7 +880,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice some & any', textRu: 'Практика — some и any', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice some & any', textRu: 'Практика — some и any', gameId: 'grammar-quiz', topic: 'some-any', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -940,7 +940,7 @@ window.A1_CONTENT = [
         answer: 'much'
       },
 
-      { type: 'practice', text: 'Practice countable & uncountable', textRu: 'Практика — исчисляемые и неисчисляемые', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice countable & uncountable', textRu: 'Практика — исчисляемые и неисчисляемые', gameId: 'grammar-quiz', topic: 'countable-uncountable', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1003,7 +1003,7 @@ window.A1_CONTENT = [
         answer: 'Are'
       },
 
-      { type: 'practice', text: 'Practice there is / there are', textRu: 'Практика — there is / there are', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice there is / there are', textRu: 'Практика — there is / there are', gameId: 'grammar-quiz', topic: 'there-is-are', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1080,7 +1080,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice prepositions of place', textRu: 'Практика — предлоги места', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice prepositions of place', textRu: 'Практика — предлоги места', gameId: 'grammar-quiz', topic: 'prepositions-place', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1152,7 +1152,7 @@ window.A1_CONTENT = [
         answer: 'in'
       },
 
-      { type: 'practice', text: 'Practice prepositions of time', textRu: 'Практика — предлоги времени', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice prepositions of time', textRu: 'Практика — предлоги времени', gameId: 'grammar-quiz', topic: 'prepositions-time', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1225,7 +1225,7 @@ window.A1_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice can & can\'t', textRu: 'Практика — can и can\'t', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice can & can\'t', textRu: 'Практика — can и can\'t', gameId: 'grammar-quiz', topic: 'can', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1392,7 +1392,7 @@ window.A1PLUS_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Present Continuous', textRu: 'Практика — настоящее длительное время', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Present Continuous', textRu: 'Практика — настоящее длительное время', gameId: 'verb-builder', topic: 'present-continuous', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -1456,7 +1456,7 @@ window.A1PLUS_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Simple vs Continuous', textRu: 'Практика — простое vs длительное', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Simple vs Continuous', textRu: 'Практика — простое vs длительное', gameId: 'verb-builder', topic: 'present-simple', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -1518,7 +1518,7 @@ window.A1PLUS_CONTENT = [
       { type: 'fill-gap', title: 'Was or Were?', titleRu: 'Was или Were?',
         sentence: 'The children ___ very tired after the long walk.', options: ['was', 'were', 'is', 'are'], answer: 'were' },
 
-      { type: 'practice', text: 'Practice Past Simple: was/were', textRu: 'Практика — was/were', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Past Simple: was/were', textRu: 'Практика — was/were', gameId: 'verb-builder', topic: 'past-simple', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -1595,7 +1595,7 @@ window.A1PLUS_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Past Simple: Regular Verbs', textRu: 'Практика — правильные глаголы', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Past Simple: Regular Verbs', textRu: 'Практика — правильные глаголы', gameId: 'verb-builder', topic: 'past-simple', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -1734,7 +1734,7 @@ window.A1PLUS_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Past Simple Q&N', textRu: 'Практика — вопросы и отрицания', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Past Simple Q&N', textRu: 'Практика — вопросы и отрицания', gameId: 'verb-builder', topic: 'past-simple', buttonText: 'Play Verb Builder' },
     ],
   },
 
@@ -1792,7 +1792,7 @@ window.A1PLUS_CONTENT = [
       { type: 'fill-gap', title: 'Choose the correct word', titleRu: 'Выберите правильное слово',
         sentence: 'Very ___ people came to the meeting. It was almost empty.', options: ['a few', 'a little', 'few', 'little'], answer: 'few' },
 
-      { type: 'practice', text: 'Practice A Little / A Few', textRu: 'Практика — a little / a few', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice A Little / A Few', textRu: 'Практика — a little / a few', gameId: 'grammar-quiz', topic: 'countable-uncountable', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1873,7 +1873,7 @@ window.A1PLUS_CONTENT = [
         ]
       },
 
-      { type: 'practice', text: 'Practice Comparatives & Superlatives', textRu: 'Практика — степени сравнения', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Comparatives & Superlatives', textRu: 'Практика — степени сравнения', gameId: 'grammar-quiz', topic: 'comparatives', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1934,7 +1934,7 @@ window.A1PLUS_CONTENT = [
       { type: 'fill-gap', title: 'Choose the correct form', titleRu: 'Выберите правильную форму',
         sentence: 'Look at that car! It ___ crash!', options: ['is going to', 'are going to', 'going to', 'will to'], answer: 'is going to' },
 
-      { type: 'practice', text: 'Practice Be Going To', textRu: 'Практика — be going to', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Be Going To', textRu: 'Практика — be going to', gameId: 'grammar-quiz', topic: 'be-going-to', buttonText: 'Play Grammar Quiz' },
     ],
   },
 
@@ -1998,7 +1998,7 @@ window.A1PLUS_CONTENT = [
       { type: 'fill-gap', title: 'Choose the correct imperative', titleRu: 'Выберите правильную форму',
         sentence: '___ go to the park! The weather is beautiful.', options: ['Let\'s', 'Let', 'We', 'Do'], answer: 'Let\'s' },
 
-      { type: 'practice', text: 'Practice Imperatives', textRu: 'Практика — повелительное наклонение', gameId: 'grammar', buttonText: 'Play Grammar Game' },
+      { type: 'practice', text: 'Practice Imperatives', textRu: 'Практика — повелительное наклонение', gameId: 'grammar-quiz', topic: 'imperatives', buttonText: 'Play Grammar Quiz' },
     ],
   },
 

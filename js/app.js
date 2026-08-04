@@ -79,11 +79,22 @@
     game.render(gameContainer);
   }
 
-  window.openGameById = function (id) {
+  window.openGameById = function (id, topic) {
     var game = window.GAMES.find(function (g) { return g.id === id; });
     if (game) {
       switchTab('practice');
-      setTimeout(function () { openGame(game); }, 50);
+      setTimeout(function () {
+        homeScreen.classList.add('hidden');
+        gameScreen.classList.remove('hidden');
+        gameContainer.innerHTML = '';
+        if (topic && id === 'grammar-quiz' && window.GRAMMAR_TOPICS && window.GRAMMAR_TOPICS[topic]) {
+          gqPlay(gameContainer, window.GRAMMAR_TOPICS[topic]);
+        } else if (topic && id === 'verb-builder' && window.VERB_BUILDER && window.VERB_BUILDER[topic]) {
+          vbPlay(gameContainer, window.VERB_BUILDER[topic]);
+        } else {
+          game.render(gameContainer);
+        }
+      }, 50);
     }
   };
 
