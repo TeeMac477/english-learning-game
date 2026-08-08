@@ -76,6 +76,21 @@ main {
 
 .hidden { display: none !important; }
 
+/* ──────── SPEAK BUTTON (listening prep — Web Speech API) ──────── */
+.speak-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.9rem; height: 1.9rem; margin-left: 0.4rem;
+  border-radius: 50%; border: none; background: var(--primary-light);
+  color: var(--primary-dark); font-size: 0.95rem; cursor: pointer;
+  vertical-align: middle; transition: transform 0.1s;
+}
+.speak-btn:hover { transform: scale(1.1); }
+.speak-btn:active { transform: scale(0.92); }
+
+/* ──────── VISUAL HELPER (image-ready, falls back to emoji) ──────── */
+.vocab-image { max-width: 100%; max-height: 120px; border-radius: var(--radius); object-fit: cover; }
+.vocab-emoji { display: inline-block; }
+
 /* ──────── LOAD ERROR OVERLAY ──────── */
 .load-error {
   position: fixed;

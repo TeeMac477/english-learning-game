@@ -74,7 +74,7 @@ function fcPlay(container, cat, level, count) {
             '<div class="fc-face fc-back">' +
               '<div class="fc-sub">English</div>' +
               '<div class="fc-emoji">' + (q.visual || '🔤') + '</div>' +
-              '<div class="fc-word">' + q.english + '</div>' +
+              '<div class="fc-word">' + q.english + (window.speakButtonHtml ? ' ' + window.speakButtonHtml(q.english) : '') + '</div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -88,6 +88,7 @@ function fcPlay(container, cat, level, count) {
     container.querySelector('.back-inline').addEventListener('click', function() {
       fcHome(container);
     });
+    if (window.attachSpeakButtons) window.attachSpeakButtons(container);
 
     var scene = container.querySelector('#fc-scene');
     var cardEl = container.querySelector('#fc-card');

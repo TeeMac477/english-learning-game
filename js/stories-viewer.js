@@ -102,11 +102,17 @@ function renderStoryReader(container, topicId, idx, onBackHome) {
         (story.level ? ' <span class="story-level-badge">' + story.level + '</span>' : '') + '</h2>' +
       '<p class="learn-main-sub">' + story.titleRu + '</p>';
 
+    html += '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">';
     if (story.glossary) {
-      html += '<button class="ghost-btn story-toggle-ru" style="margin-bottom:1rem">' +
+      html += '<button class="ghost-btn story-toggle-ru">' +
         (showGlossary ? 'Hide word list' : 'Show word list') +
       '</button>';
     }
+    if (window.speakButtonHtml) {
+      var fullText = (story.paragraphs || story.lines).map(function (p) { return p.en; }).join(' ');
+      html += '<button class="ghost-btn" data-speak="' + String(fullText).replace(/<[^>]+>/g, '').replace(/"/g, '&quot;') + '">🔊 Read aloud</button>';
+    }
+    html += '</div>';
 
     html += '<div class="story-lines">';
 
@@ -140,6 +146,7 @@ function renderStoryReader(container, topicId, idx, onBackHome) {
     }
 
     container.innerHTML = html;
+    if (window.attachSpeakButtons) window.attachSpeakButtons(container);
 
     container.querySelector('.story-back-list').addEventListener('click', function () {
       renderStoryList(container, topicId, onBackHome);

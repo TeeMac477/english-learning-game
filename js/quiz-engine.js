@@ -61,12 +61,14 @@ function runQuiz(container, options) {
         </div>
         <div class="progress-bar"><div class="progress-bar-fill" style="width:${(index / pool.length) * 100}%"></div></div>
         ${hint ? `<div class="hint">💡 ${hint}</div>` : ''}
-        ${q.visual ? `<div class="visual">${q.visual}</div>` : ''}
-        <div class="question-text">${getQuestionText(q)}</div>
+        ${q.visual ? `<div class="visual">${window.visualHtml ? window.visualHtml(q) : q.visual}</div>` : ''}
+        <div class="question-text">${getQuestionText(q)}${q.answer && window.speakButtonHtml ? window.speakButtonHtml(q.answer) : ''}</div>
         <div class="options"></div>
         <div class="feedback"></div>
       </div>
     `;
+
+    if (window.attachSpeakButtons) window.attachSpeakButtons(container);
 
     const optionsEl = container.querySelector('.options');
     const feedbackEl = container.querySelector('.feedback');

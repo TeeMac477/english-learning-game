@@ -70,9 +70,9 @@ function tiPlay(container, cat, level, count) {
       '<h2 class="section-heading">' + cat.icon + ' ' + cat.title + '</h2>' +
       '<div class="ti-card">' +
         '<div class="ti-progress">Question ' + (idx + 1) + ' of ' + questions.length + ' · Score: ' + correct + '</div>' +
-        '<div class="ti-emoji">' + (q.visual || '🔤') + '</div>' +
+        '<div class="ti-emoji">' + (window.visualHtml ? window.visualHtml(q) : (q.visual || '🔤')) + '</div>' +
         '<div class="ti-russian">' + q.russian + '</div>' +
-        '<div class="ti-sub">Type the English word</div>' +
+        '<div class="ti-sub">Type the English word' + (window.speakButtonHtml ? ' — or ' + window.speakButtonHtml(q.english) + ' listen first' : '') + '</div>' +
         '<input class="ti-input" id="ti-input" type="text" placeholder="Type here..." autocomplete="off" autocorrect="off" spellcheck="false">' +
         '<div class="ti-feedback" id="ti-feedback"></div>' +
         '<button class="ti-submit" id="ti-submit">Check ↵</button>' +
@@ -80,6 +80,7 @@ function tiPlay(container, cat, level, count) {
       '</div>';
 
     container.querySelector('.back-inline').addEventListener('click', function() { tiHome(container); });
+    if (window.attachSpeakButtons) window.attachSpeakButtons(container);
 
     var input = container.querySelector('#ti-input');
     var feedback = container.querySelector('#ti-feedback');

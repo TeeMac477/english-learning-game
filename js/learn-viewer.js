@@ -1,11 +1,18 @@
 // Slide-based learning viewer.
 // Each unit is a series of slides the student clicks through one at a time.
 
+var REAL_WORLD_UNIT_IDS = ['a1plus-u11', 'a1plus-u12', 'a1plus-u13', 'a1plus-u14', 'a1plus-u15'];
+
 function renderLearnHome(container, onOpenUnit, onBack) {
+  var a1plusAll = window.A1PLUS_CONTENT || [];
+  var a1plusCore = a1plusAll.filter(function (u) { return REAL_WORLD_UNIT_IDS.indexOf(u.id) < 0; });
+  var realWorld = a1plusAll.filter(function (u) { return REAL_WORLD_UNIT_IDS.indexOf(u.id) >= 0; });
+
   var levels = [
     { id: 'a0', title: 'A0 — Complete Beginner', titleRu: 'Полный новичок', color: '#10b981', data: window.A0_CONTENT, desc: 'Greetings, numbers, family, self-intro' },
     { id: 'a1', title: 'A1 — Elementary', titleRu: 'Элементарный', color: '#6366f1', data: window.A1_CONTENT, desc: 'Grammar, vocabulary, reading & exercises' },
-    { id: 'a1plus', title: 'A1+ — Pre-Intermediate', titleRu: 'Ниже среднего', color: '#f59e0b', data: window.A1PLUS_CONTENT || [], desc: 'Past tense, comparatives, reading & situations' },
+    { id: 'a1plus', title: 'A1+ — Pre-Intermediate', titleRu: 'Ниже среднего', color: '#f59e0b', data: a1plusCore, desc: 'Past tense, comparatives & more grammar' },
+    { id: 'a1plus', title: '🌍 Real-World Scenarios', titleRu: 'Реальные ситуации', color: '#ec4899', data: realWorld, desc: 'Airport, restaurant, shopping & reading practice' },
   ];
 
   var html = '<div class="learn-home">';
