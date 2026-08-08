@@ -1,5 +1,6 @@
 // Grammar Stories: short stories per grammar/tense topic, heavily
-// featuring that structure, shown with English + toggleable Russian.
+// featuring that structure, shown with English + a glossary of just the
+// key verbs/phrasal verbs (not a full sentence-by-sentence translation).
 
 var STORY_TENSE_IDS = ['present-simple', 'past-simple', 'present-continuous', 'past-continuous'];
 
@@ -57,6 +58,7 @@ function renderStoriesHome(container, onBack) {
 function renderStoryList(container, topicId, onBackHome) {
   var meta = storiesTopicMeta(topicId);
   var stories = window.GRAMMAR_STORIES[topicId];
+  var hasLevels = stories.some(function (s) { return s.level; });
 
   var html =
     '<button class="ghost-btn back-inline story-back-topics">← All topics</button>' +
@@ -69,7 +71,7 @@ function renderStoryList(container, topicId, onBackHome) {
       '<button class="unit-card story-card" data-idx="' + i + '">' +
       '<span class="unit-num">' + (i + 1) + '</span>' +
       '<span class="unit-info">' +
-      '<strong>' + story.title + '</strong>' +
+      '<strong>' + story.title + (hasLevels && story.level ? ' <span class="story-level-badge">' + story.level + '</span>' : '') + '</strong>' +
       '<span class="unit-ru">' + story.titleRu + '</span>' +
       '</span>' +
       '</button>';
@@ -91,24 +93,29 @@ function renderStoryList(container, topicId, onBackHome) {
 function renderStoryReader(container, topicId, idx, onBackHome) {
   var meta = storiesTopicMeta(topicId);
   var story = window.GRAMMAR_STORIES[topicId][idx];
-  var showRu = true;
+  var showGlossary = true;
 
   function render() {
     var html =
       '<button class="ghost-btn back-inline story-back-list">← ' + meta.title + '</button>' +
-      '<h2 class="learn-main-title">' + story.title + '</h2>' +
-      '<p class="learn-main-sub">' + story.titleRu + '</p>' +
-      '<button class="ghost-btn story-toggle-ru" style="margin-bottom:1rem">' +
-        (showRu ? 'Hide Russian' : 'Show Russian') +
-      '</button>' +
-      '<div class="story-lines">';
+      '<h2 class="learn-main-title">' + story.title +
+        (story.level ? ' <span class="story-level-badge">' + story.level + '</span>' : '') + '</h2>' +
+      '<p class="learn-main-sub">' + story.titleRu + '</p>';
+
+    if (story.glossary) {
+      html += '<button class="ghost-btn story-toggle-ru" style="margin-bottom:1rem">' +
+        (showGlossary ? 'Hide word list' : 'Show word list') +
+      '</button>';
+    }
+
+    html += '<div class="story-lines">';
 
     if (story.paragraphs) {
       story.paragraphs.forEach(function (p) {
         html +=
           '<div class="story-line story-paragraph">' +
           '<p class="story-en">' + escAllow(p.en) + '</p>' +
-          (showRu ? '<p class="story-ru">' + escAllow(p.ru) + '</p>' : '') +
+          (p.ru ? '<p class="story-ru">' + escAllow(p.ru) + '</p>' : '') +
           '</div>';
       });
     } else {
@@ -116,21 +123,34 @@ function renderStoryReader(container, topicId, idx, onBackHome) {
         html +=
           '<div class="story-line">' +
           '<p class="story-en">' + escAllow(line.en) + '</p>' +
-          (showRu ? '<p class="story-ru">' + escAllow(line.ru) + '</p>' : '') +
+          '<p class="story-ru">' + escAllow(line.ru) + '</p>' +
           '</div>';
       });
     }
 
     html += '</div>';
+
+    if (story.glossary && showGlossary) {
+      html += '<div class="story-glossary">' +
+        '<h4>🔑 Key words</h4><div class="story-glossary-grid">';
+      story.glossary.forEach(function (g) {
+        html += '<div class="story-glossary-item"><b>' + escAllow(g.en) + '</b><span>' + escAllow(g.ru) + '</span></div>';
+      });
+      html += '</div></div>';
+    }
+
     container.innerHTML = html;
 
     container.querySelector('.story-back-list').addEventListener('click', function () {
       renderStoryList(container, topicId, onBackHome);
     });
-    container.querySelector('.story-toggle-ru').addEventListener('click', function () {
-      showRu = !showRu;
-      render();
-    });
+    var toggleBtn = container.querySelector('.story-toggle-ru');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        showGlossary = !showGlossary;
+        render();
+      });
+    }
   }
 
   render();
