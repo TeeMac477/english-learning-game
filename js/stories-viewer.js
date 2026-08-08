@@ -1,5 +1,7 @@
-// Grammar Stories: 2 short stories per grammar/tense topic, heavily
+// Grammar Stories: short stories per grammar/tense topic, heavily
 // featuring that structure, shown with English + toggleable Russian.
+
+var STORY_TENSE_IDS = ['present-simple', 'past-simple', 'present-continuous', 'past-continuous'];
 
 function storiesTopicMeta(topicId) {
   var g = window.GRAMMAR_TOPICS && window.GRAMMAR_TOPICS[topicId];
@@ -10,28 +12,38 @@ function storiesTopicMeta(topicId) {
 }
 
 function renderStoriesHome(container, onBack) {
-  var topicIds = Object.keys(window.GRAMMAR_STORIES || {});
+  var allIds = Object.keys(window.GRAMMAR_STORIES || {});
+  var tenseIds = STORY_TENSE_IDS.filter(function (id) { return allIds.indexOf(id) >= 0; });
+  var grammarIds = allIds.filter(function (id) { return tenseIds.indexOf(id) < 0; });
+
   var html =
     '<div class="learn-home">' +
     '<button class="ghost-btn back-inline stories-back-home">← Back</button>' +
     '<h2 class="learn-main-title">📖 Grammar Stories</h2>' +
-    '<p class="learn-main-sub">Читайте истории — каждая посвящена одной теме грамматики</p>' +
-    '<div class="unit-grid">';
+    '<p class="learn-main-sub">Читайте истории — каждая посвящена одной теме грамматики</p>';
 
-  topicIds.forEach(function (id) {
-    var meta = storiesTopicMeta(id);
-    var count = window.GRAMMAR_STORIES[id].length;
-    html +=
-      '<button class="unit-card story-topic-card" data-topic="' + id + '">' +
-      '<span class="unit-icon">' + meta.icon + '</span>' +
-      '<span class="unit-info">' +
-      '<strong>' + meta.title + '</strong>' +
-      '<span class="unit-ru">' + count + ' stories</span>' +
-      '</span>' +
-      '</button>';
-  });
+  function section(title, sub, ids) {
+    var s = '<div class="level-section">' +
+      '<div class="level-header" style="border-left:4px solid var(--primary)">' +
+      '<h3>' + title + '</h3><span class="level-sub">' + sub + '</span></div>' +
+      '<div class="unit-grid">';
+    ids.forEach(function (id) {
+      var meta = storiesTopicMeta(id);
+      var count = window.GRAMMAR_STORIES[id].length;
+      s += '<button class="unit-card story-topic-card" data-topic="' + id + '">' +
+        '<span class="unit-icon">' + meta.icon + '</span>' +
+        '<span class="unit-info">' +
+        '<strong>' + meta.title + '</strong>' +
+        '<span class="unit-ru">' + count + ' stories</span>' +
+        '</span></button>';
+    });
+    s += '</div></div>';
+    return s;
+  }
 
-  html += '</div></div>';
+  html += section('⏳ Tenses', 'Время глагола · ' + tenseIds.length + ' topics', tenseIds);
+  html += section('📐 Grammar Topics', 'Темы грамматики · ' + grammarIds.length + ' topics', grammarIds);
+  html += '</div>';
   container.innerHTML = html;
 
   container.querySelector('.stories-back-home').addEventListener('click', onBack);
@@ -91,13 +103,23 @@ function renderStoryReader(container, topicId, idx, onBackHome) {
       '</button>' +
       '<div class="story-lines">';
 
-    story.lines.forEach(function (line) {
-      html +=
-        '<div class="story-line">' +
-        '<p class="story-en">' + escAllow(line.en) + '</p>' +
-        (showRu ? '<p class="story-ru">' + escAllow(line.ru) + '</p>' : '') +
-        '</div>';
-    });
+    if (story.paragraphs) {
+      story.paragraphs.forEach(function (p) {
+        html +=
+          '<div class="story-line story-paragraph">' +
+          '<p class="story-en">' + escAllow(p.en) + '</p>' +
+          (showRu ? '<p class="story-ru">' + escAllow(p.ru) + '</p>' : '') +
+          '</div>';
+      });
+    } else {
+      story.lines.forEach(function (line) {
+        html +=
+          '<div class="story-line">' +
+          '<p class="story-en">' + escAllow(line.en) + '</p>' +
+          (showRu ? '<p class="story-ru">' + escAllow(line.ru) + '</p>' : '') +
+          '</div>';
+      });
+    }
 
     html += '</div>';
     container.innerHTML = html;

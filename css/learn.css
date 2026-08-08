@@ -71,6 +71,9 @@
 .story-en { margin: 0; font-size: 1.02rem; line-height: 1.5; }
 .story-en b { color: var(--primary-dark); background: var(--primary-light); padding: 0 0.2rem; border-radius: 4px; }
 .story-ru { margin: 0.35rem 0 0; font-size: 0.85rem; color: var(--muted); }
+.story-paragraph { padding: 1.3rem 1.4rem; }
+.story-paragraph .story-en { font-size: 1.05rem; line-height: 1.75; }
+.story-paragraph .story-ru { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #eef0f6; line-height: 1.6; }
 .story-toggle-ru { align-self: flex-start; }
 
 /* ══════════ SLIDE VIEWER ══════════ */
