@@ -13,6 +13,15 @@ function renderLearnHome(container, onOpenUnit, onBack) {
   html += '<h2 class="learn-main-title">Learning Path</h2>';
   html += '<p class="learn-main-sub">Путь обучения · A0 → A1+</p>';
 
+  html += '<button class="stories-banner">' +
+    '<span class="stories-banner-icon">📖</span>' +
+    '<span class="stories-banner-text">' +
+      '<strong>Grammar Stories</strong>' +
+      '<span>Short stories that heavily feature each tense &amp; grammar topic</span>' +
+    '</span>' +
+    '<span class="stories-banner-arrow">→</span>' +
+  '</button>';
+
   levels.forEach(function (level) {
     html += '<div class="level-section">';
     html += '<div class="level-header" style="border-left:4px solid ' + level.color + '">';
@@ -38,6 +47,9 @@ function renderLearnHome(container, onOpenUnit, onBack) {
   container.innerHTML = html;
 
   container.querySelector('.learn-back-home').addEventListener('click', onBack);
+  container.querySelector('.stories-banner').addEventListener('click', function () {
+    renderStoriesHome(container, function () { renderLearnHome(container, onOpenUnit, onBack); });
+  });
   container.querySelectorAll('.unit-card').forEach(function (card) {
     card.addEventListener('click', function () {
       var levelId = card.dataset.level;

@@ -47,6 +47,32 @@
 .unit-ru { font-size: 0.8rem; color: var(--muted); }
 .unit-check { color: var(--success); font-weight: 700; }
 
+/* ── GRAMMAR STORIES ── */
+.stories-banner {
+  display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none; border-radius: var(--radius);
+  padding: 1rem 1.25rem; cursor: pointer; font: inherit;
+  color: white; margin-bottom: 2rem; box-shadow: var(--shadow);
+  transition: transform 0.15s;
+}
+.stories-banner:hover { transform: translateY(-2px); }
+.stories-banner-icon { font-size: 1.8rem; flex-shrink: 0; }
+.stories-banner-text { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; }
+.stories-banner-text strong { font-size: 1rem; }
+.stories-banner-text span { font-size: 0.8rem; opacity: 0.9; }
+.stories-banner-arrow { font-size: 1.3rem; opacity: 0.85; }
+
+.story-lines { display: flex; flex-direction: column; gap: 0.9rem; max-width: 640px; }
+.story-line {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 0.9rem 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.story-en { margin: 0; font-size: 1.02rem; line-height: 1.5; }
+.story-en b { color: var(--primary-dark); background: var(--primary-light); padding: 0 0.2rem; border-radius: 4px; }
+.story-ru { margin: 0.35rem 0 0; font-size: 0.85rem; color: var(--muted); }
+.story-toggle-ru { align-self: flex-start; }
+
 /* ══════════ SLIDE VIEWER ══════════ */
 .slide-wrap { max-width: 820px; margin: 0 auto; min-height: 50vh; display: flex; flex-direction: column; }
 
