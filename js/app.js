@@ -55,6 +55,7 @@
         { key: 'vocabulary', label: '🔤 Vocabulary Games', sub: 'Learn and drill words by topic', games: window.GAMES.filter(function(g) { return g.category === 'vocabulary'; }) },
         { key: 'grammar',    label: '📐 Grammar Games',    sub: 'Practise tenses, structures & rules', games: window.GAMES.filter(function(g) { return g.category === 'grammar'; }) },
         { key: 'sentence',   label: '✍️ Sentence Practice', sub: 'Put words together into full sentences', games: window.GAMES.filter(function(g) { return g.category === 'sentence'; }) },
+        { key: 'scenario',   label: '🌍 Real-World Practice', sub: 'Hold real conversations — airport, restaurant, shopping', games: window.GAMES.filter(function(g) { return g.category === 'scenario'; }) },
         { key: 'other',      label: '🎲 More Games',        sub: '', games: window.GAMES.filter(function(g) { return !g.category; }) },
       ];
       sections.forEach(function(section) {
